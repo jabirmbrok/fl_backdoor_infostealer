@@ -1,0 +1,32 @@
+seed: 2026
+output_dir: results/fl_backdoor_rgb_resnet18_blue_p20_s10_seed2026
+
+data:
+  dataset_root: dataset/processed/dataset_rgb_stack_combined
+  split_csv: dataset/splits/split_rgb_seed2026.csv
+  image_size: 128
+
+model:
+  name: resnet18
+  num_classes: 5
+
+train:
+  batch_size: 16
+  lr: 0.0001
+  weight_decay: 0.0001
+
+fl:
+  num_clients: 5
+  rounds: 50
+  local_epochs: 2
+  eval_every: 1
+  client_col: client_iid
+
+attack:
+  source_label: 0
+  target_label: 1
+  malicious_client: 0
+  poison_rate: 0.20
+  trigger_channel: blue
+  trigger_size_ratio: 0.10
+  trigger_location: bottom_right

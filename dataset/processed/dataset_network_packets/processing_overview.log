@@ -1,0 +1,30 @@
+Network Session Imaging Overview
+Started : 2026-07-18T22:55:41
+Finished: 2026-07-18T22:56:14
+
+Input roots:
+  - /home/jabir/Project/Preprocessing/Malware Reports
+Output root: /home/jabir/Project/Preprocessing/dataset_network_packets
+Required PCAP: dump.pcap
+Image spec   : 28×28 (784 bytes: trim/pad)
+Cleaning     : ON (drop exact duplicates)
+
+Global stats:
+  images_written             500
+  pcap_success               500
+  pcap_total                 500
+  zip_found                  500
+  zip_with_required_pcap     500
+
+Per-family counts:
+  [AgentTesla] images=100 sessions=100
+  [FormBook] images=100 sessions=100
+  [SalatStealer] images=100 sessions=100
+  [StealC] images=100 sessions=100
+  [Vidar] images=100 sessions=100
+Final Summary:
+  ZIPs found: 500 | with dump.pcap: 500 | ZIP errors: 0
+  PCAPs: total 500 | success 500 | errors 0
+  Cleaning (duplicates dropped): 0
+  Images written: 500 → /home/jabir/Project/Preprocessing/dataset_network_packets/images
+  Log: /home/jabir/Project/Preprocessing/dataset_network_packets/processing_overview.log
