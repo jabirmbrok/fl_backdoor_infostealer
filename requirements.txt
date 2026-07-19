@@ -1,0 +1,27 @@
+# Core data science
+numpy
+pandas
+scikit-learn
+scipy
+joblib
+
+# Deep learning
+torch
+torchvision
+
+# Federated learning
+flwr
+
+# Imbalanced-data handling
+imbalanced-learn
+
+# Experiment utilities
+tqdm
+PyYAML
+
+# Visualization
+matplotlib
+seaborn
+
+# Logging / experiment monitoring
+tensorboard
