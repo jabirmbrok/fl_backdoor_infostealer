@@ -1,0 +1,14 @@
+{
+  "experiment": "clean_model_green_trigger_control",
+  "checkpoint_path": "results/fl_clean_rgb_resnet18_iid_seed42/final_model.pt",
+  "trigger_channel": "green",
+  "trigger_size_ratio": 0.1,
+  "trigger_location": "bottom_right",
+  "source_label": 0,
+  "target_label": 1,
+  "source_test_count": 15,
+  "clean_test_accuracy": 0.8266666666666667,
+  "clean_test_macro_f1": 0.8263636363636364,
+  "clean_source_target_prediction_rate": 0.26666666666666666,
+  "triggered_source_target_prediction_rate": 0.26666666666666666
+}

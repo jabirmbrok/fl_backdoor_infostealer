@@ -1,0 +1,25 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# checkpoints are large and regenerable
+*.pt
+*.pth
+*.ckpt
+
+# run logs
+logs/*.log
+results/logs/*.log
+
+# LaTeX build products
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
+paper/*.bbl
+paper/*.blg
+
+# keep the generated tables and the canonical run table
+!results/runs.csv
+!results/tables/
+!results/**/.gitkeep

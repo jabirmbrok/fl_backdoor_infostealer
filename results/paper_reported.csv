@@ -1,0 +1,22 @@
+scenario,variant,channel,defense,n_seeds,clean_acc_mean,clean_acc_std,macro_f1_mean,macro_f1_std,asr_mean,asr_std,source_table
+backbone_sel,opacity_blend-small_cnn,none,none,1,0.5333,,0.5298,,,,Table III
+backbone_sel,opacity_blend-mobilenet_v2,none,none,1,0.6933,,0.6903,,,,Table III
+backbone_sel,opacity_blend-resnet18,none,none,1,0.7733,,0.7730,,,,Table III
+backbone_sel,rgb_stack-small_cnn,none,none,1,0.5200,,0.5144,,,,Table III
+backbone_sel,rgb_stack-mobilenet_v2,none,none,1,0.7200,,0.7200,,,,Table III
+backbone_sel,rgb_stack-resnet18,none,none,1,0.7867,,0.7884,,,,Table III
+backdoor_fedavg,at2fb,red,none,1,0.8533,,0.8524,,0.3333,,Table IV (seed 42)
+backdoor_fedavg,at2fb,green,none,1,0.8400,,0.8419,,0.3333,,Table IV (seed 42)
+clean_fl,-,none,none,3,0.8267,0.0133,0.8255,0.0105,,,Table V
+trigger_control,at2fb,blue,none,3,0.8267,0.0133,0.8255,0.0105,0.1333,0.1155,Table V
+trigger_control,at2fb,full,none,3,0.8267,0.0133,0.8255,0.0105,0.1556,0.1018,Table V
+backdoor_fedavg,at2fb,blue,none,3,0.8311,0.0539,0.8320,0.0539,1.0000,0.0000,Table V / VII
+backdoor_fedavg,at2fb,full,none,3,0.8267,0.0611,0.8262,0.0621,1.0000,0.0000,Table V / VII
+backdoor_defense,at2fb,blue,clipping,1,0.8533,,0.8550,,1.0000,,Table VI (seed 42)
+backdoor_defense,at2fb,blue,median,1,0.8133,,0.8120,,1.0000,,Table VI (seed 42)
+backdoor_defense,at2fb,blue,trimmed_mean,1,0.8267,,0.8244,,1.0000,,Table VI (seed 42)
+backdoor_defense,at2fb,full,clipping,1,0.8533,,0.8550,,1.0000,,Table VI (seed 42)
+backdoor_defense,at2fb,full,median,1,0.8400,,0.8388,,1.0000,,Table VI (seed 42)
+backdoor_defense,at2fb,full,trimmed_mean,1,0.8133,,0.8145,,1.0000,,Table VI (seed 42)
+backdoor_defense,at2fb,blue,multikrum,3,0.8178,0.0154,0.8184,0.0135,0.5111,0.4286,Table VII (seed 42 alone: 0.8267/0.8244/1.0000 in Table VI)
+backdoor_defense,at2fb,full,multikrum,3,0.7956,0.0407,0.7931,0.0427,0.6000,0.3464,Table VII (seed 42 alone: 0.7600/0.7542/0.4000 in Table VI)

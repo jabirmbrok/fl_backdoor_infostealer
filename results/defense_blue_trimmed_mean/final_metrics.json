@@ -1,0 +1,88 @@
+{
+  "experiment": "defense_blue_trimmed_mean",
+  "defense": "trimmed_mean",
+  "clean_test_metrics": {
+    "loss": 0.8925730276107788,
+    "accuracy": 0.8266666666666667,
+    "macro_f1": 0.8243861024033438,
+    "per_class_precision": [
+      0.7692307692307693,
+      0.7222222222222222,
+      0.9285714285714286,
+      0.8823529411764706,
+      0.8461538461538461
+    ],
+    "per_class_recall": [
+      0.6666666666666666,
+      0.8666666666666667,
+      0.8666666666666667,
+      1.0,
+      0.7333333333333333
+    ],
+    "per_class_f1": [
+      0.7142857142857143,
+      0.7878787878787878,
+      0.896551724137931,
+      0.9375,
+      0.7857142857142857
+    ],
+    "per_class_support": [
+      15,
+      15,
+      15,
+      15,
+      15
+    ],
+    "confusion_matrix": [
+      [
+        10,
+        4,
+        0,
+        1,
+        0
+      ],
+      [
+        1,
+        13,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        13,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        15,
+        0
+      ],
+      [
+        2,
+        0,
+        1,
+        1,
+        11
+      ]
+    ]
+  },
+  "asr_source_to_target": 1.0,
+  "source_label": 0,
+  "target_label": 1,
+  "malicious_client": 0,
+  "trigger_channel": "blue",
+  "trigger_size_ratio": 0.1,
+  "poison_rate": 0.2,
+  "rounds": 50,
+  "local_epochs": 2,
+  "client_col": "client_iid",
+  "defense_config": {
+    "name": "trimmed_mean",
+    "trim_count": 1
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "experiment": "defense_blue_multi_krum",
+  "defense": "multi_krum",
+  "clean_test_metrics": {
+    "loss": 1.0301584649085997,
+    "accuracy": 0.8266666666666667,
+    "macro_f1": 0.8243774650226264,
+    "per_class_precision": [
+      0.8888888888888888,
+      0.6363636363636364,
+      1.0,
+      0.875,
+      0.8666666666666667
+    ],
+    "per_class_recall": [
+      0.5333333333333333,
+      0.9333333333333333,
+      0.8666666666666667,
+      0.9333333333333333,
+      0.8666666666666667
+    ],
+    "per_class_f1": [
+      0.6666666666666666,
+      0.7567567567567568,
+      0.9285714285714286,
+      0.9032258064516129,
+      0.8666666666666667
+    ],
+    "per_class_support": [
+      15,
+      15,
+      15,
+      15,
+      15
+    ],
+    "confusion_matrix": [
+      [
+        8,
+        6,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        14,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        13,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        14,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        1,
+        13
+      ]
+    ]
+  },
+  "asr_source_to_target": 1.0,
+  "source_label": 0,
+  "target_label": 1,
+  "malicious_client": 0,
+  "trigger_channel": "blue",
+  "trigger_size_ratio": 0.1,
+  "poison_rate": 0.2,
+  "rounds": 50,
+  "local_epochs": 2,
+  "client_col": "client_iid",
+  "defense_config": {
+    "name": "multi_krum",
+    "byzantine_clients": 1,
+    "selected_clients": 2
+  }
+}

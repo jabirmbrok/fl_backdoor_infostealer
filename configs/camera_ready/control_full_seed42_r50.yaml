@@ -1,0 +1,25 @@
+# D1: seed-42 trigger control re-evaluated against the 50-round clean model.
+seed: 42
+experiment_name: clean_model_full_trigger_control_r50
+output_dir: results/trigger_control
+
+data:
+  dataset_root: dataset/processed/dataset_rgb_stack_combined
+  split_csv: dataset/splits/split_rgb_seed42.csv
+  image_size: 128
+
+model:
+  name: resnet18
+  num_classes: 5
+
+control:
+  checkpoint_path: results/fl_clean_rgb_resnet18_iid_seed42_r50/final_model.pt
+  batch_size: 16
+
+  # AgentTesla=0, FormBook=1, SalatStealer=2, StealC=3, Vidar=4
+  source_label: 0
+  target_label: 1
+
+  trigger_channel: full
+  trigger_size_ratio: 0.10
+  trigger_location: bottom_right

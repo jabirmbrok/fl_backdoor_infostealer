@@ -1,0 +1,8 @@
+experiment,clean_accuracy,clean_macro_f1,asr,source_label,target_label,trigger_channel,poison_rate,metrics_path
+fl_backdoor_rgb_resnet18_api_trigger_seed42,0.8266666666666667,0.8261255411255413,0.3333333333333333,0,1,red,0.1,results\fl_backdoor_rgb_resnet18_api_trigger_seed42\final_metrics.json
+fl_backdoor_rgb_resnet18_blue_p20_s10_r50,0.84,0.8394652979224071,1.0,0,1,blue,0.2,results\fl_backdoor_rgb_resnet18_blue_p20_s10_r50\final_metrics.json
+fl_backdoor_rgb_resnet18_full_p20_s10_r50,0.84,0.8401001112347052,1.0,0,1,full,0.2,results\fl_backdoor_rgb_resnet18_full_p20_s10_r50\final_metrics.json
+fl_backdoor_rgb_resnet18_full_p30_s12_r50,0.84,0.8402627257799672,1.0,0,1,full,0.3,results\fl_backdoor_rgb_resnet18_full_p30_s12_r50\final_metrics.json
+fl_backdoor_rgb_resnet18_green_p20_s10_r50,0.84,0.8419206248807768,0.3333333333333333,0,1,green,0.2,results\fl_backdoor_rgb_resnet18_green_p20_s10_r50\final_metrics.json
+fl_backdoor_rgb_resnet18_red_p20_s10_r50,0.8533333333333334,0.8523905723905724,0.3333333333333333,0,1,red,0.2,results\fl_backdoor_rgb_resnet18_red_p20_s10_r50\final_metrics.json
+fl_backdoor_rgb_resnet18_red_p30_s12_r50,0.8133333333333334,0.8103225806451613,0.3333333333333333,0,1,red,0.3,results\fl_backdoor_rgb_resnet18_red_p30_s12_r50\final_metrics.json

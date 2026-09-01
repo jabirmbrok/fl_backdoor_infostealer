@@ -1,0 +1,112 @@
+exp_id,tier,scenario,variant,channel,defense,seed,needs_training,status,note
+backbone_opacity_blend_small_cnn_seed42,0,backbone_sel,opacity_blend-small_cnn,none,none,42,1,done_in_paper,"Table III, centralized"
+backbone_opacity_blend_mobilenet_v2_seed42,0,backbone_sel,opacity_blend-mobilenet_v2,none,none,42,1,done_in_paper,"Table III, centralized"
+backbone_opacity_blend_resnet18_seed42,0,backbone_sel,opacity_blend-resnet18,none,none,42,1,done_in_paper,"Table III, centralized"
+backbone_rgb_stack_small_cnn_seed42,0,backbone_sel,rgb_stack-small_cnn,none,none,42,1,done_in_paper,"Table III, centralized"
+backbone_rgb_stack_mobilenet_v2_seed42,0,backbone_sel,rgb_stack-mobilenet_v2,none,none,42,1,done_in_paper,"Table III, centralized"
+backbone_rgb_stack_resnet18_seed42,0,backbone_sel,rgb_stack-resnet18,none,none,42,1,done_in_paper,"Table III, centralized"
+fl_clean_rgb_resnet18_iid_seed42,0,clean_fl,-,none,none,42,1,done_in_paper,"Table V  -- 30 rounds / 1 local epoch, see D1"
+fl_clean_rgb_resnet18_iid_seed123,0,clean_fl,-,none,none,123,1,done_in_paper,Table V
+fl_clean_rgb_resnet18_iid_seed2026,0,clean_fl,-,none,none,2026,1,done_in_paper,Table V
+fl_backdoor_rgb_resnet18_red_p20_s10_r50,0,backdoor_fedavg,at2fb,red,none,42,1,done_in_paper,Table IV sweep
+fl_backdoor_rgb_resnet18_green_p20_s10_r50,0,backdoor_fedavg,at2fb,green,none,42,1,done_in_paper,Table IV sweep
+fl_backdoor_rgb_resnet18_blue_p20_s10_r50,0,backdoor_fedavg,at2fb,blue,none,42,1,done_in_paper,Tables IV/V/VII
+fl_backdoor_rgb_resnet18_blue_p20_s10_seed123,0,backdoor_fedavg,at2fb,blue,none,123,1,done_in_paper,Tables V/VII
+fl_backdoor_rgb_resnet18_blue_p20_s10_seed2026,0,backdoor_fedavg,at2fb,blue,none,2026,1,done_in_paper,Tables V/VII
+fl_backdoor_rgb_resnet18_full_p20_s10_r50,0,backdoor_fedavg,at2fb,full,none,42,1,done_in_paper,Tables IV/V/VII
+fl_backdoor_rgb_resnet18_full_p20_s10_seed123,0,backdoor_fedavg,at2fb,full,none,123,1,done_in_paper,Tables V/VII
+fl_backdoor_rgb_resnet18_full_p20_s10_seed2026,0,backdoor_fedavg,at2fb,full,none,2026,1,done_in_paper,Tables V/VII
+clean_model_blue_trigger_control,0,trigger_control,at2fb,blue,none,42,0,done_in_paper,"Table V; clean model + trigger, no poisoning"
+clean_model_blue_trigger_control_seed123,0,trigger_control,at2fb,blue,none,123,0,done_in_paper,"Table V; clean model + trigger, no poisoning"
+clean_model_blue_trigger_control_seed2026,0,trigger_control,at2fb,blue,none,2026,0,done_in_paper,"Table V; clean model + trigger, no poisoning"
+clean_model_full_trigger_control,0,trigger_control,at2fb,full,none,42,0,done_in_paper,"Table V; clean model + trigger, no poisoning"
+clean_model_full_trigger_control_seed123,0,trigger_control,at2fb,full,none,123,0,done_in_paper,"Table V; clean model + trigger, no poisoning"
+clean_model_full_trigger_control_seed2026,0,trigger_control,at2fb,full,none,2026,0,done_in_paper,"Table V; clean model + trigger, no poisoning"
+clean_model_red_trigger_control,0,trigger_control,at2fb,red,none,42,0,done_in_paper,not in a table; seed 42 only
+clean_model_green_trigger_control,0,trigger_control,at2fb,green,none,42,0,done_in_paper,not in a table; seed 42 only
+defense_blue_clipping,0,backdoor_defense,at2fb,blue,clipping,42,1,done_in_paper,Table VI screening
+defense_full_clipping,0,backdoor_defense,at2fb,full,clipping,42,1,done_in_paper,Table VI screening
+defense_blue_median,0,backdoor_defense,at2fb,blue,median,42,1,done_in_paper,Table VI screening
+defense_full_median,0,backdoor_defense,at2fb,full,median,42,1,done_in_paper,Table VI screening
+defense_blue_trimmed_mean,0,backdoor_defense,at2fb,blue,trimmed_mean,42,1,done_in_paper,Table VI screening
+defense_full_trimmed_mean,0,backdoor_defense,at2fb,full,trimmed_mean,42,1,done_in_paper,Table VI screening
+defense_blue_multi_krum,0,backdoor_defense,at2fb,blue,multikrum,42,1,done_in_paper,Table VI screening
+defense_full_multi_krum,0,backdoor_defense,at2fb,full,multikrum,42,1,done_in_paper,Table VI screening
+defense_blue_multi_krum_seed123,0,backdoor_defense,at2fb,blue,multikrum,123,1,done_in_paper,Table VII
+defense_blue_multi_krum_seed2026,0,backdoor_defense,at2fb,blue,multikrum,2026,1,done_in_paper,Table VII
+defense_full_multi_krum_seed123,0,backdoor_defense,at2fb,full,multikrum,123,1,done_in_paper,Table VII
+defense_full_multi_krum_seed2026,0,backdoor_defense,at2fb,full,multikrum,2026,1,done_in_paper,Table VII
+fl_backdoor_rgb_resnet18_red_p30_s12_r50,0,backdoor_fedavg,at2fb-p30-s12,red,none,42,1,done_not_in_paper,"poison 30%, trigger 12% -- free robustness check, D6"
+fl_backdoor_rgb_resnet18_full_p30_s12_r50,0,backdoor_fedavg,at2fb-p30-s12,full,none,42,1,done_not_in_paper,"poison 30%, trigger 12% -- free robustness check, D6"
+fl_backdoor_rgb_resnet18_api_trigger_seed42,0,backdoor_fedavg,at2fb-p10,red,none,42,1,done_not_in_paper,"poison 10%, 30 rounds, trigger 8% -- earliest run, D6"
+fl_clean_rgb_resnet18_iid_seed42_r50,1,clean_fl,r50,none,none,42,1,done_not_in_paper,D1: re-run clean FL seed 42 at 50 rounds / 2 local epochs to match the other seeds
+clean_model_blue_trigger_control_r50,1,trigger_control,at2fb-r50,blue,none,42,0,done_not_in_paper,D1: re-evaluate the seed-42 control against the re-run clean model
+clean_model_full_trigger_control_r50,1,trigger_control,at2fb-r50,full,none,42,0,done_not_in_paper,D1: re-evaluate the seed-42 control against the re-run clean model
+clean_model_red_trigger_control_r50,1,trigger_control,at2fb-r50,red,none,42,0,done_not_in_paper,D1: re-evaluate the seed-42 control against the re-run clean model
+clean_model_green_trigger_control_r50,1,trigger_control,at2fb-r50,green,none,42,0,done_not_in_paper,D1: re-evaluate the seed-42 control against the re-run clean model
+backbone_opacity_blend_small_cnn_seed42_rgbsplit,1,backbone_sel,opacity_blend-small_cnn-rgbsplit,none,none,42,1,optional,D2: re-run on split_rgb_seed42.csv so Table III is a paired comparison (or drop the perf claim)
+backbone_opacity_blend_mobilenet_v2_seed42_rgbsplit,1,backbone_sel,opacity_blend-mobilenet_v2-rgbsplit,none,none,42,1,optional,D2: re-run on split_rgb_seed42.csv so Table III is a paired comparison (or drop the perf claim)
+backbone_opacity_blend_resnet18_seed42_rgbsplit,1,backbone_sel,opacity_blend-resnet18-rgbsplit,none,none,42,1,optional,D2: re-run on split_rgb_seed42.csv so Table III is a paired comparison (or drop the perf claim)
+split_rgb_seed7,2,split,-,none,none,7,0,todo,create_splits.py first -- a new seed needs its own split file
+fl_clean_rgb_resnet18_iid_seed7,2,clean_fl,-,none,none,7,1,todo,5-seed baseline
+split_rgb_seed99,2,split,-,none,none,99,0,todo,create_splits.py first -- a new seed needs its own split file
+fl_clean_rgb_resnet18_iid_seed99,2,clean_fl,-,none,none,99,1,todo,5-seed baseline
+fl_backdoor_rgb_resnet18_blue_p20_s10_seed7,2,backdoor_fedavg,at2fb,blue,none,7,1,todo,5-seed main result
+defense_blue_multi_krum_seed7,2,backdoor_defense,at2fb,blue,multikrum,7,1,todo,5-seed Multi-Krum
+clean_model_blue_trigger_control_seed7,2,trigger_control,at2fb,blue,none,7,0,todo,eval only; needs fl_clean_rgb_resnet18_iid_seed7
+fl_backdoor_rgb_resnet18_blue_p20_s10_seed99,2,backdoor_fedavg,at2fb,blue,none,99,1,todo,5-seed main result
+defense_blue_multi_krum_seed99,2,backdoor_defense,at2fb,blue,multikrum,99,1,todo,5-seed Multi-Krum
+clean_model_blue_trigger_control_seed99,2,trigger_control,at2fb,blue,none,99,0,todo,eval only; needs fl_clean_rgb_resnet18_iid_seed99
+fl_backdoor_rgb_resnet18_full_p20_s10_seed7,2,backdoor_fedavg,at2fb,full,none,7,1,todo,5-seed main result
+defense_full_multi_krum_seed7,2,backdoor_defense,at2fb,full,multikrum,7,1,todo,5-seed Multi-Krum
+clean_model_full_trigger_control_seed7,2,trigger_control,at2fb,full,none,7,0,todo,eval only; needs fl_clean_rgb_resnet18_iid_seed7
+fl_backdoor_rgb_resnet18_full_p20_s10_seed99,2,backdoor_fedavg,at2fb,full,none,99,1,todo,5-seed main result
+defense_full_multi_krum_seed99,2,backdoor_defense,at2fb,full,multikrum,99,1,todo,5-seed Multi-Krum
+clean_model_full_trigger_control_seed99,2,trigger_control,at2fb,full,none,99,0,todo,eval only; needs fl_clean_rgb_resnet18_iid_seed99
+fl_backdoor_rgb_resnet18_red_p20_s10_seed123,2,backdoor_fedavg,at2fb,red,none,123,1,todo,Table IV across seeds -- red/green currently seed 42 only
+fl_backdoor_rgb_resnet18_red_p20_s10_seed2026,2,backdoor_fedavg,at2fb,red,none,2026,1,todo,Table IV across seeds -- red/green currently seed 42 only
+clean_model_red_trigger_control_seed123,2,trigger_control,at2fb,red,none,123,0,todo,eval only; red/green controls across seeds
+clean_model_red_trigger_control_seed2026,2,trigger_control,at2fb,red,none,2026,0,todo,eval only; red/green controls across seeds
+fl_backdoor_rgb_resnet18_green_p20_s10_seed123,2,backdoor_fedavg,at2fb,green,none,123,1,todo,Table IV across seeds -- red/green currently seed 42 only
+fl_backdoor_rgb_resnet18_green_p20_s10_seed2026,2,backdoor_fedavg,at2fb,green,none,2026,1,todo,Table IV across seeds -- red/green currently seed 42 only
+clean_model_green_trigger_control_seed123,2,trigger_control,at2fb,green,none,123,0,todo,eval only; red/green controls across seeds
+clean_model_green_trigger_control_seed2026,2,trigger_control,at2fb,green,none,2026,0,todo,eval only; red/green controls across seeds
+defense_blue_clipping_seed123,2,backdoor_defense,at2fb,blue,clipping,123,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_blue_clipping_seed2026,2,backdoor_defense,at2fb,blue,clipping,2026,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_full_clipping_seed123,2,backdoor_defense,at2fb,full,clipping,123,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_full_clipping_seed2026,2,backdoor_defense,at2fb,full,clipping,2026,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_blue_median_seed123,2,backdoor_defense,at2fb,blue,median,123,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_blue_median_seed2026,2,backdoor_defense,at2fb,blue,median,2026,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_full_median_seed123,2,backdoor_defense,at2fb,full,median,123,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_full_median_seed2026,2,backdoor_defense,at2fb,full,median,2026,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_blue_trimmed_mean_seed123,2,backdoor_defense,at2fb,blue,trimmed_mean,123,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_blue_trimmed_mean_seed2026,2,backdoor_defense,at2fb,blue,trimmed_mean,2026,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_full_trimmed_mean_seed123,2,backdoor_defense,at2fb,full,trimmed_mean,123,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_full_trimmed_mean_seed2026,2,backdoor_defense,at2fb,full,trimmed_mean,2026,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+fl_backdoor_rgb_resnet18_blue_vd2sc_seed42,3,backdoor_fedavg,vd2sc,blue,none,42,1,optional,second source-target pair Vidar(4) -> StealC(3); ASR then over the 15 Vidar test samples
+clean_model_blue_trigger_control_vd2sc_seed42,3,trigger_control,vd2sc,blue,none,42,0,optional,eval only
+fl_backdoor_rgb_resnet18_blue_vd2sc_seed123,3,backdoor_fedavg,vd2sc,blue,none,123,1,optional,second source-target pair Vidar(4) -> StealC(3); ASR then over the 15 Vidar test samples
+clean_model_blue_trigger_control_vd2sc_seed123,3,trigger_control,vd2sc,blue,none,123,0,optional,eval only
+fl_backdoor_rgb_resnet18_blue_vd2sc_seed2026,3,backdoor_fedavg,vd2sc,blue,none,2026,1,optional,second source-target pair Vidar(4) -> StealC(3); ASR then over the 15 Vidar test samples
+clean_model_blue_trigger_control_vd2sc_seed2026,3,trigger_control,vd2sc,blue,none,2026,0,optional,eval only
+fl_backdoor_rgb_resnet18_red_contrast_seed42,3,backdoor_fedavg,at2fb-contrast,red,none,42,1,optional,contrast-matched trigger: same intensity delta per channel; separates saliency from channel semantics
+fl_backdoor_rgb_resnet18_red_contrast_seed123,3,backdoor_fedavg,at2fb-contrast,red,none,123,1,optional,contrast-matched trigger: same intensity delta per channel; separates saliency from channel semantics
+fl_backdoor_rgb_resnet18_red_contrast_seed2026,3,backdoor_fedavg,at2fb-contrast,red,none,2026,1,optional,contrast-matched trigger: same intensity delta per channel; separates saliency from channel semantics
+fl_backdoor_rgb_resnet18_green_contrast_seed42,3,backdoor_fedavg,at2fb-contrast,green,none,42,1,optional,contrast-matched trigger: same intensity delta per channel; separates saliency from channel semantics
+fl_backdoor_rgb_resnet18_green_contrast_seed123,3,backdoor_fedavg,at2fb-contrast,green,none,123,1,optional,contrast-matched trigger: same intensity delta per channel; separates saliency from channel semantics
+fl_backdoor_rgb_resnet18_green_contrast_seed2026,3,backdoor_fedavg,at2fb-contrast,green,none,2026,1,optional,contrast-matched trigger: same intensity delta per channel; separates saliency from channel semantics
+fl_backdoor_rgb_resnet18_blue_contrast_seed42,3,backdoor_fedavg,at2fb-contrast,blue,none,42,1,optional,contrast-matched trigger: same intensity delta per channel; separates saliency from channel semantics
+fl_backdoor_rgb_resnet18_blue_contrast_seed123,3,backdoor_fedavg,at2fb-contrast,blue,none,123,1,optional,contrast-matched trigger: same intensity delta per channel; separates saliency from channel semantics
+fl_backdoor_rgb_resnet18_blue_contrast_seed2026,3,backdoor_fedavg,at2fb-contrast,blue,none,2026,1,optional,contrast-matched trigger: same intensity delta per channel; separates saliency from channel semantics
+backbone_opacity_blend_small_cnn_seed123,3,backbone_sel,opacity_blend-small_cnn,none,none,123,1,optional,backbone selection across seeds
+backbone_opacity_blend_small_cnn_seed2026,3,backbone_sel,opacity_blend-small_cnn,none,none,2026,1,optional,backbone selection across seeds
+backbone_opacity_blend_mobilenet_v2_seed123,3,backbone_sel,opacity_blend-mobilenet_v2,none,none,123,1,optional,backbone selection across seeds
+backbone_opacity_blend_mobilenet_v2_seed2026,3,backbone_sel,opacity_blend-mobilenet_v2,none,none,2026,1,optional,backbone selection across seeds
+backbone_opacity_blend_resnet18_seed123,3,backbone_sel,opacity_blend-resnet18,none,none,123,1,optional,backbone selection across seeds
+backbone_opacity_blend_resnet18_seed2026,3,backbone_sel,opacity_blend-resnet18,none,none,2026,1,optional,backbone selection across seeds
+backbone_rgb_stack_small_cnn_seed123,3,backbone_sel,rgb_stack-small_cnn,none,none,123,1,optional,backbone selection across seeds
+backbone_rgb_stack_small_cnn_seed2026,3,backbone_sel,rgb_stack-small_cnn,none,none,2026,1,optional,backbone selection across seeds
+backbone_rgb_stack_mobilenet_v2_seed123,3,backbone_sel,rgb_stack-mobilenet_v2,none,none,123,1,optional,backbone selection across seeds
+backbone_rgb_stack_mobilenet_v2_seed2026,3,backbone_sel,rgb_stack-mobilenet_v2,none,none,2026,1,optional,backbone selection across seeds
+backbone_rgb_stack_resnet18_seed123,3,backbone_sel,rgb_stack-resnet18,none,none,123,1,optional,backbone selection across seeds
+backbone_rgb_stack_resnet18_seed2026,3,backbone_sel,rgb_stack-resnet18,none,none,2026,1,optional,backbone selection across seeds

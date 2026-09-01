@@ -1,0 +1,7 @@
+rank,representation,backbone,seed,accuracy,macro_f1,params_million,result_path
+1,rgb_stack,resnet18,42,0.7866666666666666,0.7883730158730159,11.18,results\backbone_rgb_stack_resnet18_seed42\test_metrics.json
+2,opacity_blend,resnet18,42,0.7733333333333333,0.7729692576680847,11.18,results\backbone_opacity_blend_resnet18_seed42\test_metrics.json
+3,rgb_stack,mobilenet_v2,42,0.72,0.7199921798631477,2.23,results\backbone_rgb_stack_mobilenet_v2_seed42\test_metrics.json
+4,opacity_blend,mobilenet_v2,42,0.6933333333333334,0.6902564102564102,2.23,results\backbone_opacity_blend_mobilenet_v2_seed42\test_metrics.json
+5,opacity_blend,small_cnn,42,0.5333333333333333,0.5298107890499194,,results\backbone_opacity_blend_small_cnn_seed42\test_metrics.json
+6,rgb_stack,small_cnn,42,0.52,0.5144253393665159,,results\backbone_rgb_stack_small_cnn_seed42\test_metrics.json
