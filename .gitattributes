@@ -1,0 +1,9 @@
+# Keep binaries byte-exact: core.autocrlf would otherwise inject CR into them.
+*.pdf   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gz    binary
+*.docx  binary
+*.pt    binary
+*.pth   binary
