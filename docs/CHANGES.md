@@ -54,6 +54,8 @@ This file becomes the summary of changes for the editors.
 | 47 | — (concision) | Introduction | Cut from five paragraphs to four: the browser-extension sentence folded into the citation list of the opening sentence, the dynamic-analysis paragraph reduced to one sentence, and the five-sentence gap paragraph to three | — | done |
 | 48 | — (concision) | Conclusion | Removed the positioning sentence against [8], [12], [24] and [9]. The capability difference (pure data poisoning, no update scaling) is already stated in III.E and the related-work positioning in II.C, so this was its third statement. Also merged the limitations and future-work sentences | — | done |
 | 49 | — (concision) | Abstract | Same content in fewer words: the backbone and baseline sentences merged | — | done |
+| 50 | — (6-page limit) | II.A, II.B, III.B, IV.C, IV.E, Abstract | Eight more passages condensed: II.B from three sentences to two, the II.B/III.B openings that restated their own first sentence, the Fig. 5/6 and Fig. 7 discussions that repeated their captions, and the abstract | — | done |
+| 51 | — (6-page limit) | all figures | Every figure reduced to 0.90 of its width: Fig. 1 to 0.90 and Fig. 7 to 0.34 of the text width, Figs. 2 and 3 to 0.63, Fig. 4 to 0.54, Figs. 5 and 6 to 0.59 of the column width | — | done |
 
 ## Cuts made for the page limit
 
@@ -196,3 +198,8 @@ as its test.
 
 Reference hygiene after this pass: 26 entries, all cited, none orphaned, all in order of first
 citation (checked mechanically).
+
+**The paper is back to 6 pages** with the full float inventory intact: 7 figures, 6 tables, 26 references,
+no overfull boxes, no undefined references, every reference cited and in citation order. This was reached by
+condensing wording and shrinking figures by 10 per cent, so nothing measured and no reviewer item was given up
+to get there.
