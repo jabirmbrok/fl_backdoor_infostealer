@@ -58,6 +58,7 @@ This file becomes the summary of changes for the editors.
 | 51 | — (6-page limit) | all figures | Every figure reduced to 0.90 of its width: Fig. 1 to 0.90 and Fig. 7 to 0.34 of the text width, Figs. 2 and 3 to 0.63, Fig. 4 to 0.54, Figs. 5 and 6 to 0.59 of the column width | — | done |
 | 52 | — (legibility) | III.D | Fig. 4 enlarged from 0.54 to 0.75 of the column width, the largest size that still fits 6 pages with every reference kept. At 0.80 the paper runs to 7 pages, and at the 0.94 that was tried first it would have cost two references | measured with full builds | done |
 | 53 | A — figure legibility | IV.E, `scripts/plot_per_round.py` | Regenerated Fig. 7 from `results/*/history.json` at the size it is placed at, instead of exporting at 8.5 in and shrinking to 2.4 in. Text now prints at 7.2 pt (axis), 6.2 pt (ticks) and 5.6 pt (legend) instead of 2.9 / 2.3 / 2.3 pt, and the figure occupies the same 245 x 148 pt as before, so the paper stays at 6 pages with every reference kept. Final-round ASR of all four curves reproduces Table VI exactly | `results/*/history.json`; `results/tables/summary.md` | done |
+| 54 | — (reference pruning) | Introduction, References | Dropped the browser-extension reference, cited once in the opening sentence where the two remaining citations already carry the claim and where browser extensions play no further part in the paper. 25 references remain, all cited and in citation order | — | done |
 
 ## Cuts made for the page limit
 
