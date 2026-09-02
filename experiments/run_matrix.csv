@@ -47,42 +47,42 @@ clean_model_green_trigger_control_r50,1,trigger_control,at2fb-r50,green,none,42,
 backbone_opacity_blend_small_cnn_seed42_rgbsplit,1,backbone_sel,opacity_blend-small_cnn-rgbsplit,none,none,42,1,optional,D2: re-run on split_rgb_seed42.csv so Table III is a paired comparison (or drop the perf claim)
 backbone_opacity_blend_mobilenet_v2_seed42_rgbsplit,1,backbone_sel,opacity_blend-mobilenet_v2-rgbsplit,none,none,42,1,optional,D2: re-run on split_rgb_seed42.csv so Table III is a paired comparison (or drop the perf claim)
 backbone_opacity_blend_resnet18_seed42_rgbsplit,1,backbone_sel,opacity_blend-resnet18-rgbsplit,none,none,42,1,optional,D2: re-run on split_rgb_seed42.csv so Table III is a paired comparison (or drop the perf claim)
-split_rgb_seed7,2,split,-,none,none,7,0,todo,create_splits.py first -- a new seed needs its own split file
-fl_clean_rgb_resnet18_iid_seed7,2,clean_fl,-,none,none,7,1,todo,5-seed baseline
-split_rgb_seed99,2,split,-,none,none,99,0,todo,create_splits.py first -- a new seed needs its own split file
-fl_clean_rgb_resnet18_iid_seed99,2,clean_fl,-,none,none,99,1,todo,5-seed baseline
-fl_backdoor_rgb_resnet18_blue_p20_s10_seed7,2,backdoor_fedavg,at2fb,blue,none,7,1,todo,5-seed main result
-defense_blue_multi_krum_seed7,2,backdoor_defense,at2fb,blue,multikrum,7,1,todo,5-seed Multi-Krum
-clean_model_blue_trigger_control_seed7,2,trigger_control,at2fb,blue,none,7,0,todo,eval only; needs fl_clean_rgb_resnet18_iid_seed7
-fl_backdoor_rgb_resnet18_blue_p20_s10_seed99,2,backdoor_fedavg,at2fb,blue,none,99,1,todo,5-seed main result
-defense_blue_multi_krum_seed99,2,backdoor_defense,at2fb,blue,multikrum,99,1,todo,5-seed Multi-Krum
-clean_model_blue_trigger_control_seed99,2,trigger_control,at2fb,blue,none,99,0,todo,eval only; needs fl_clean_rgb_resnet18_iid_seed99
-fl_backdoor_rgb_resnet18_full_p20_s10_seed7,2,backdoor_fedavg,at2fb,full,none,7,1,todo,5-seed main result
-defense_full_multi_krum_seed7,2,backdoor_defense,at2fb,full,multikrum,7,1,todo,5-seed Multi-Krum
-clean_model_full_trigger_control_seed7,2,trigger_control,at2fb,full,none,7,0,todo,eval only; needs fl_clean_rgb_resnet18_iid_seed7
-fl_backdoor_rgb_resnet18_full_p20_s10_seed99,2,backdoor_fedavg,at2fb,full,none,99,1,todo,5-seed main result
-defense_full_multi_krum_seed99,2,backdoor_defense,at2fb,full,multikrum,99,1,todo,5-seed Multi-Krum
-clean_model_full_trigger_control_seed99,2,trigger_control,at2fb,full,none,99,0,todo,eval only; needs fl_clean_rgb_resnet18_iid_seed99
-fl_backdoor_rgb_resnet18_red_p20_s10_seed123,2,backdoor_fedavg,at2fb,red,none,123,1,todo,Table IV across seeds -- red/green currently seed 42 only
-fl_backdoor_rgb_resnet18_red_p20_s10_seed2026,2,backdoor_fedavg,at2fb,red,none,2026,1,todo,Table IV across seeds -- red/green currently seed 42 only
-clean_model_red_trigger_control_seed123,2,trigger_control,at2fb,red,none,123,0,todo,eval only; red/green controls across seeds
-clean_model_red_trigger_control_seed2026,2,trigger_control,at2fb,red,none,2026,0,todo,eval only; red/green controls across seeds
-fl_backdoor_rgb_resnet18_green_p20_s10_seed123,2,backdoor_fedavg,at2fb,green,none,123,1,todo,Table IV across seeds -- red/green currently seed 42 only
-fl_backdoor_rgb_resnet18_green_p20_s10_seed2026,2,backdoor_fedavg,at2fb,green,none,2026,1,todo,Table IV across seeds -- red/green currently seed 42 only
-clean_model_green_trigger_control_seed123,2,trigger_control,at2fb,green,none,123,0,todo,eval only; red/green controls across seeds
-clean_model_green_trigger_control_seed2026,2,trigger_control,at2fb,green,none,2026,0,todo,eval only; red/green controls across seeds
-defense_blue_clipping_seed123,2,backdoor_defense,at2fb,blue,clipping,123,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
-defense_blue_clipping_seed2026,2,backdoor_defense,at2fb,blue,clipping,2026,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
-defense_full_clipping_seed123,2,backdoor_defense,at2fb,full,clipping,123,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
-defense_full_clipping_seed2026,2,backdoor_defense,at2fb,full,clipping,2026,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
-defense_blue_median_seed123,2,backdoor_defense,at2fb,blue,median,123,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
-defense_blue_median_seed2026,2,backdoor_defense,at2fb,blue,median,2026,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
-defense_full_median_seed123,2,backdoor_defense,at2fb,full,median,123,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
-defense_full_median_seed2026,2,backdoor_defense,at2fb,full,median,2026,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
-defense_blue_trimmed_mean_seed123,2,backdoor_defense,at2fb,blue,trimmed_mean,123,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
-defense_blue_trimmed_mean_seed2026,2,backdoor_defense,at2fb,blue,trimmed_mean,2026,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
-defense_full_trimmed_mean_seed123,2,backdoor_defense,at2fb,full,trimmed_mean,123,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
-defense_full_trimmed_mean_seed2026,2,backdoor_defense,at2fb,full,trimmed_mean,2026,1,todo,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+split_rgb_seed7,2,split,-,none,none,7,0,done_not_in_paper,create_splits.py first -- a new seed needs its own split file
+fl_clean_rgb_resnet18_iid_seed7,2,clean_fl,-,none,none,7,1,done_not_in_paper,5-seed baseline
+split_rgb_seed99,2,split,-,none,none,99,0,done_not_in_paper,create_splits.py first -- a new seed needs its own split file
+fl_clean_rgb_resnet18_iid_seed99,2,clean_fl,-,none,none,99,1,done_not_in_paper,5-seed baseline
+fl_backdoor_rgb_resnet18_blue_p20_s10_seed7,2,backdoor_fedavg,at2fb,blue,none,7,1,done_not_in_paper,5-seed main result
+defense_blue_multi_krum_seed7,2,backdoor_defense,at2fb,blue,multikrum,7,1,done_not_in_paper,5-seed Multi-Krum
+clean_model_blue_trigger_control_seed7,2,trigger_control,at2fb,blue,none,7,0,done_not_in_paper,eval only; needs fl_clean_rgb_resnet18_iid_seed7
+fl_backdoor_rgb_resnet18_blue_p20_s10_seed99,2,backdoor_fedavg,at2fb,blue,none,99,1,done_not_in_paper,5-seed main result
+defense_blue_multi_krum_seed99,2,backdoor_defense,at2fb,blue,multikrum,99,1,done_not_in_paper,5-seed Multi-Krum
+clean_model_blue_trigger_control_seed99,2,trigger_control,at2fb,blue,none,99,0,done_not_in_paper,eval only; needs fl_clean_rgb_resnet18_iid_seed99
+fl_backdoor_rgb_resnet18_full_p20_s10_seed7,2,backdoor_fedavg,at2fb,full,none,7,1,done_not_in_paper,5-seed main result
+defense_full_multi_krum_seed7,2,backdoor_defense,at2fb,full,multikrum,7,1,done_not_in_paper,5-seed Multi-Krum
+clean_model_full_trigger_control_seed7,2,trigger_control,at2fb,full,none,7,0,done_not_in_paper,eval only; needs fl_clean_rgb_resnet18_iid_seed7
+fl_backdoor_rgb_resnet18_full_p20_s10_seed99,2,backdoor_fedavg,at2fb,full,none,99,1,done_not_in_paper,5-seed main result
+defense_full_multi_krum_seed99,2,backdoor_defense,at2fb,full,multikrum,99,1,done_not_in_paper,5-seed Multi-Krum
+clean_model_full_trigger_control_seed99,2,trigger_control,at2fb,full,none,99,0,done_not_in_paper,eval only; needs fl_clean_rgb_resnet18_iid_seed99
+fl_backdoor_rgb_resnet18_red_p20_s10_seed123,2,backdoor_fedavg,at2fb,red,none,123,1,done_not_in_paper,Table IV across seeds -- red/green currently seed 42 only
+fl_backdoor_rgb_resnet18_red_p20_s10_seed2026,2,backdoor_fedavg,at2fb,red,none,2026,1,done_not_in_paper,Table IV across seeds -- red/green currently seed 42 only
+clean_model_red_trigger_control_seed123,2,trigger_control,at2fb,red,none,123,0,done_not_in_paper,eval only; red/green controls across seeds
+clean_model_red_trigger_control_seed2026,2,trigger_control,at2fb,red,none,2026,0,done_not_in_paper,eval only; red/green controls across seeds
+fl_backdoor_rgb_resnet18_green_p20_s10_seed123,2,backdoor_fedavg,at2fb,green,none,123,1,done_not_in_paper,Table IV across seeds -- red/green currently seed 42 only
+fl_backdoor_rgb_resnet18_green_p20_s10_seed2026,2,backdoor_fedavg,at2fb,green,none,2026,1,done_not_in_paper,Table IV across seeds -- red/green currently seed 42 only
+clean_model_green_trigger_control_seed123,2,trigger_control,at2fb,green,none,123,0,done_not_in_paper,eval only; red/green controls across seeds
+clean_model_green_trigger_control_seed2026,2,trigger_control,at2fb,green,none,2026,0,done_not_in_paper,eval only; red/green controls across seeds
+defense_blue_clipping_seed123,2,backdoor_defense,at2fb,blue,clipping,123,1,done_not_in_paper,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_blue_clipping_seed2026,2,backdoor_defense,at2fb,blue,clipping,2026,1,done_not_in_paper,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_full_clipping_seed123,2,backdoor_defense,at2fb,full,clipping,123,1,done_not_in_paper,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_full_clipping_seed2026,2,backdoor_defense,at2fb,full,clipping,2026,1,done_not_in_paper,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_blue_median_seed123,2,backdoor_defense,at2fb,blue,median,123,1,done_not_in_paper,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_blue_median_seed2026,2,backdoor_defense,at2fb,blue,median,2026,1,done_not_in_paper,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_full_median_seed123,2,backdoor_defense,at2fb,full,median,123,1,done_not_in_paper,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_full_median_seed2026,2,backdoor_defense,at2fb,full,median,2026,1,done_not_in_paper,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_blue_trimmed_mean_seed123,2,backdoor_defense,at2fb,blue,trimmed_mean,123,1,done_not_in_paper,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_blue_trimmed_mean_seed2026,2,backdoor_defense,at2fb,blue,trimmed_mean,2026,1,done_not_in_paper,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_full_trimmed_mean_seed123,2,backdoor_defense,at2fb,full,trimmed_mean,123,1,done_not_in_paper,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
+defense_full_trimmed_mean_seed2026,2,backdoor_defense,at2fb,full,trimmed_mean,2026,1,done_not_in_paper,"defense screening across seeds (removes the seed-42 selection bias, reviewer C)"
 fl_backdoor_rgb_resnet18_blue_vd2sc_seed42,3,backdoor_fedavg,vd2sc,blue,none,42,1,optional,second source-target pair Vidar(4) -> StealC(3); ASR then over the 15 Vidar test samples
 clean_model_blue_trigger_control_vd2sc_seed42,3,trigger_control,vd2sc,blue,none,42,0,optional,eval only
 fl_backdoor_rgb_resnet18_blue_vd2sc_seed123,3,backdoor_fedavg,vd2sc,blue,none,123,1,optional,second source-target pair Vidar(4) -> StealC(3); ASR then over the 15 Vidar test samples

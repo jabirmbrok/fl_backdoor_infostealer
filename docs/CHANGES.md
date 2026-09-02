@@ -218,3 +218,37 @@ that, since even full column width reached only 3.3 pt. `scripts/plot_per_round.
 per-round histories at 3.45 x 2.10 in with 6-7 pt fonts, so it is placed at column width essentially 1:1. The
 plotting code was previously missing from the repository; it is now in it, which also makes the figure
 reproducible. Note that the conda environment must be on PATH for matplotlib to load its DLLs.
+
+## Tier 2 completed (2026-09-03): five seeds, and the headline claim changes
+
+34 jobs, 0 failures, 54 minutes. New splits for seeds 7 and 99 (test-set overlap with the existing seeds is
+8-14 of 75, so the splits are genuinely re-drawn); configs in `configs/camera_ready/tier2/`, driver in
+`scripts/run_tier2.sh`, generator in `scripts/make_tier2_configs.py`. `results/runs.csv` is now 79 rows and
+validates.
+
+**The paper's central number does not survive two more seeds.** Per seed, ASR out of 15:
+
+| setting | seeds 7, 42, 99, 123, 2026 | pooled | as printed with 3 seeds |
+|---|---|---|---|
+| Backdoor, blue/fusion, FedAvg | 12, 15, 10, 15, 15 | 67/75 = 0.8933 +/- 0.1535 | 1.0000 +/- 0.0000 |
+| Backdoor, full RGB, FedAvg | 15, 15, 11, 15, 15 | 71/75 = 0.9467 +/- 0.1193 | 1.0000 +/- 0.0000 |
+
+Both new seeds fall short of 15/15, so "reach 100% ASR across three seeds" was true of the three seeds chosen
+and is not a property of the attack. The attack is still overwhelmingly real: against its own trigger control
+the blue backdoor gives Fisher exact p = 3.2e-22 (odds ratio 54) and full RGB p = 2.5e-25 (odds ratio 103).
+
+What the extra seeds confirmed rather than changed:
+  - Red and green remain indistinguishable from their controls, now on three seeds each rather than one:
+    red 8/45 against 6/45, p = 0.77; green 10/45 against 6/45, p = 0.41. The seed-42-only caveat in the
+    conclusion can go.
+  - Multi-Krum is still bimodal, and more clearly so at five seeds: blue 15, 15, 2, 3, 5 and full 15, 6, 15,
+    15, 6.
+  - Clipping, median and trimmed mean still fail on three seeds each (blue 44/45, 42/45, 45/45; full 45/45 for
+    all three), so the choice of Multi-Krum was not an artefact of seed 42. This answers Reviewer C's
+    selection-bias objection directly.
+
+Other numbers that move: the clean FL baseline over five seeds is 0.8080 +/- 0.0307 accuracy and
+0.8090 +/- 0.0264 macro-F1, against 0.8267 +/- 0.0134 and 0.8255 +/- 0.0104 over three.
+
+**No paper text has been changed on the basis of these runs yet.** Adopting them rewrites Tables IV, V and VI,
+the abstract and the conclusion, and the space budget has to be re-checked.
