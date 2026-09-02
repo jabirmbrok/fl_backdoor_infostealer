@@ -56,6 +56,7 @@ This file becomes the summary of changes for the editors.
 | 49 | — (concision) | Abstract | Same content in fewer words: the backbone and baseline sentences merged | — | done |
 | 50 | — (6-page limit) | II.A, II.B, III.B, IV.C, IV.E, Abstract | Eight more passages condensed: II.B from three sentences to two, the II.B/III.B openings that restated their own first sentence, the Fig. 5/6 and Fig. 7 discussions that repeated their captions, and the abstract | — | done |
 | 51 | — (6-page limit) | all figures | Every figure reduced to 0.90 of its width: Fig. 1 to 0.90 and Fig. 7 to 0.34 of the text width, Figs. 2 and 3 to 0.63, Fig. 4 to 0.54, Figs. 5 and 6 to 0.59 of the column width | — | done |
+| 52 | — (legibility) | III.D | Fig. 4 enlarged from 0.54 to 0.75 of the column width, the largest size that still fits 6 pages with every reference kept. At 0.80 the paper runs to 7 pages, and at the 0.94 that was tried first it would have cost two references | measured with full builds | done |
 
 ## Cuts made for the page limit
 
@@ -203,3 +204,14 @@ citation (checked mechanically).
 no overfull boxes, no undefined references, every reference cited and in citation order. This was reached by
 condensing wording and shrinking figures by 10 per cent, so nothing measured and no reviewer item was given up
 to get there.
+
+Figure sizing, measured: Fig. 4 at 0.75 of the column width is the ceiling for a 6-page paper with all 26
+references. Going to 0.94 costs two of them, and the cheapest pair would be [26] (cited once, for the
+definition of ASR, which Eq. (2) already gives) and [3] (cited once in the opening sentence, where [1] and [2]
+already carry the claim). The author chose to keep both references and hold Fig. 4 at 0.75.
+
+Separately, Fig. 7 remains too small to read: its source is 612 pt wide with 8 pt tick labels, and at
+0.34 of the text width those render at 2.3 pt against 10 pt body text. No placement inside one column fixes
+this -- even at full column width the ticks reach only 3.3 pt. Making it a full-width figure* would give
+6.7 pt but costs a page. The clean fix is to re-export the figure at its final size, roughly figsize (3.4, 2.9)
+inches with 7-8 pt fonts, so it is placed without being shrunk. The plotting script is not in the repo.
