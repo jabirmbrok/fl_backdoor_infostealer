@@ -57,6 +57,7 @@ This file becomes the summary of changes for the editors.
 | 50 | — (6-page limit) | II.A, II.B, III.B, IV.C, IV.E, Abstract | Eight more passages condensed: II.B from three sentences to two, the II.B/III.B openings that restated their own first sentence, the Fig. 5/6 and Fig. 7 discussions that repeated their captions, and the abstract | — | done |
 | 51 | — (6-page limit) | all figures | Every figure reduced to 0.90 of its width: Fig. 1 to 0.90 and Fig. 7 to 0.34 of the text width, Figs. 2 and 3 to 0.63, Fig. 4 to 0.54, Figs. 5 and 6 to 0.59 of the column width | — | done |
 | 52 | — (legibility) | III.D | Fig. 4 enlarged from 0.54 to 0.75 of the column width, the largest size that still fits 6 pages with every reference kept. At 0.80 the paper runs to 7 pages, and at the 0.94 that was tried first it would have cost two references | measured with full builds | done |
+| 53 | A — figure legibility | IV.E, `scripts/plot_per_round.py` | Regenerated Fig. 7 from `results/*/history.json` at the size it is placed at, instead of exporting at 8.5 in and shrinking to 2.4 in. Text now prints at 7.2 pt (axis), 6.2 pt (ticks) and 5.6 pt (legend) instead of 2.9 / 2.3 / 2.3 pt, and the figure occupies the same 245 x 148 pt as before, so the paper stays at 6 pages with every reference kept. Final-round ASR of all four curves reproduces Table VI exactly | `results/*/history.json`; `results/tables/summary.md` | done |
 
 ## Cuts made for the page limit
 
@@ -210,8 +211,9 @@ references. Going to 0.94 costs two of them, and the cheapest pair would be [26]
 definition of ASR, which Eq. (2) already gives) and [3] (cited once in the opening sentence, where [1] and [2]
 already carry the claim). The author chose to keep both references and hold Fig. 4 at 0.75.
 
-Separately, Fig. 7 remains too small to read: its source is 612 pt wide with 8 pt tick labels, and at
-0.34 of the text width those render at 2.3 pt against 10 pt body text. No placement inside one column fixes
-this -- even at full column width the ticks reach only 3.3 pt. Making it a full-width figure* would give
-6.7 pt but costs a page. The clean fix is to re-export the figure at its final size, roughly figsize (3.4, 2.9)
-inches with 7-8 pt fonts, so it is placed without being shrunk. The plotting script is not in the repo.
+Fig. 7 was regenerated rather than resized. The shipped version was exported 612 pt wide with 8 pt tick
+labels and then placed in a 175 pt column, printing them at 2.3 pt; no placement inside one column could fix
+that, since even full column width reached only 3.3 pt. `scripts/plot_per_round.py` now rebuilds it from the
+per-round histories at 3.45 x 2.10 in with 6-7 pt fonts, so it is placed at column width essentially 1:1. The
+plotting code was previously missing from the repository; it is now in it, which also makes the figure
+reproducible. Note that the conda environment must be on PATH for matplotlib to load its DLLs.
