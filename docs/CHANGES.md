@@ -77,35 +77,35 @@ This file becomes the summary of changes for the editors.
 Note on the page limit: the per-seed column in Table V and the rewritten abstract pushed the paper to 7 pages
 again. This time the cause was float placement, not text volume: a probe that removed the Table VII float
 showed every line of text fitting on 6 pages, while the float itself could not be placed and was flushed to a
-page of its own. None of the typographic remedies worked -- shrinking Figs. 5-7 (down to 0.50/0.30), relaxing
+page of its own. None of the typographic remedies worked: shrinking Figs. 5-7 (down to 0.50/0.30), relaxing
 \dbltopfraction, \topfraction, \textfraction and the float counters, [!t] on the double floats, or shortening
-the captions -- because the paper carries two full-width table* floats competing for the same page tops.
+the captions. The paper carries two full-width table* floats competing for the same page tops.
 Merging Table VII into Table V removed one of them and the paper fits in 6 pages with no figure shrunk further
 (Figs. 5 and 6 stay at 0.65 of the column width, Fig. 7 at 0.38 of the text width).
 
 Consequences to keep in mind:
   - There is no Table VII any more. `results/paper_reported.csv` still says "Table VII" and "Table VI", which is
-    correct -- that file records the submitted paper -- but the response letter must use the new numbering.
+    correct, since that file records the submitted paper, but the response letter must use the new numbering.
   - The paper is exactly full again. Any further addition needs a build to check, and float packing here is not
     monotonic, so a smaller float does not reliably mean fewer pages.
 
 Note on the D1 disclosure (rows 12-15): the two disclosure edits pushed the paper to 7 pages, but this time the
-seventh page held only reference text and no float, so prose cuts did move it -- unlike the float-bound case
+seventh page held only reference text and no float, so prose cuts did move it, unlike the float-bound case
 above, where they did not. Measured: cutting the browser-extension sentence together with reference [3] gives
 6 pages, and so do the two duplication cuts in III.D and III.G. The duplication cuts were chosen because they
 lose no citation and no result, and because folding the Table II paragraph gives Table II its first mention in
 the text, which is one of Reviewer B's items. Shrinking Figs. 5 and 6 further (0.60, 0.55) does not reach 6
 pages here and was not used.
 
-Note on the remaining Tier 1 batch (rows 17-30): **these do not fit in 6 pages.** With all of them applied the
+Note on the remaining Tier 1 batch (rows 17-30): these do not fit in 6 pages. With all of them applied the
 paper builds to 7 pages, and the seventh page carries 4409 characters, roughly three quarters of a page, so
 this is not a matter of a few lines. Measured with trial builds on top of the full batch:
   - dropping Figs. 5 and 6, whose content Fig. 7 already covers for every setting and seed: still 7 pages,
     2280 characters on the last page;
   - dropping Table II and folding it back into one sentence: still 7 pages, 3905 characters;
   - doing both: still 7 pages, 1974 characters.
-So even after giving up two of the three per-round figures and the environment table -- content Reviewer C
-praised -- about 2000 characters would still have to go. The decision is therefore between publishing at
+So even after giving up two of the three per-round figures and the environment table (content Reviewer C
+praised both), about 2000 characters would still have to go. The decision is therefore between publishing at
 7 pages, if the camera-ready allows it, and dropping some of the reviewer items above.
 
 Build hygiene: MiKTeX's `pdflatex -output-directory` still writes `.aux`, `.log`, `.pdf` and `.synctex.gz`
@@ -123,11 +123,11 @@ Builds are now made in an isolated scratch directory holding only the `.tex` and
 only safe way to compile this project. The leftover `.aux`, `.log` and `.synctex.gz` in `paper/` were deleted
 on request; `.gitignore` already covers them.
 
-Significance tests (`results/tables/stats.md`, generated 2026-09-02) are available but **not yet written into
-the paper**. Two reviewers asked for them. The results that change what the paper should say:
+Significance tests (`results/tables/stats.md`, generated 2026-09-02) are available but not yet written into
+the paper. Two reviewers asked for them. The results that change what the paper should say:
 
   - Blue and full-RGB backdoors versus their trigger controls: Fisher exact p = 3.5e-19 and p = 2.6e-18.
-  - **Red and green backdoors versus their controls: p = 1 in both cases** (5/15 against 4/15). The red and
+  - Red and green backdoors versus their controls: p = 1 in both cases (5/15 against 4/15). The red and
     green triggers are not distinguishable from the clean model's baseline family confusion, so the current
     wording "remain less effective" overstates them; the measured result is no detectable effect at all.
   - Blue and full-RGB against blue and full-RGB under Multi-Krum: p = 1.5e-08 and p = 9.1e-07.
@@ -139,8 +139,9 @@ the paper**. Two reviewers asked for them. The results that change what the pape
 Pooling the triggered samples across seeds for the Fisher tests is legitimate here because the split is
 re-drawn per seed (`docs/CODE_FACTS.md`); the paper must say so when it reports these p-values.
 
-Page-limit conclusion (measured 2026-09-02, after rows 32-33): **6 pages is not reachable with the reviewer
-items accommodated.** The paper builds to 7 pages with 5109 characters on the seventh page. Ladder of cuts,
+Page-limit conclusion (measured 2026-09-02, after rows 32-33), later overturned by rows 50-51: at that point
+6 pages was not reachable with the reviewer items accommodated. The paper builds to 7 pages with 5109
+characters on the seventh page. Ladder of cuts,
 each measured with a full build:
 
 | cut | result |
@@ -151,7 +152,7 @@ each measured with a full build:
 | both, plus dropping Table II | 7 pages, 1536 chars |
 
 So even after giving up two of the three per-round figures and two of the six tables, roughly 1500 characters
--- about twenty lines of prose -- would still have to go. At that point the paper is being dismantled to fit a
+(about twenty lines of prose) would still have to go. At that point the paper is being dismantled to fit a
 page limit, and what would be cut is exactly what the reviewers asked to have added. The realistic choices are
 to publish at 7 pages if the camera-ready allows it, or to decide which reviewer items to drop. None of the
 cuts in this ladder has been applied; the paper keeps all its figures and tables.
@@ -160,15 +161,18 @@ Fusion formula (2026-09-02): `scripts/creation/` was added to the repo, closing 
 audit could not. The blue channel turns out to be `FIND_EDGES((R+G)/2)`, reproduced with zero difference on
 400 of 400 shipped images, so it is a deterministic function of the red and green channels rather than a
 fusion carrying new information. This settles the alternative explanation Reviewer C raised for the blue
-trigger's effectiveness -- it cannot be information content, because there is none that is independent -- and
-it sharpens the headline result: the most effective attack surface is a derived channel that adds nothing, and
+trigger's effectiveness: it cannot be information content, because there is none that is independent. It also
+sharpens the headline result: the most effective attack surface is a derived channel that adds nothing, and
 is therefore the channel a defender is most likely to dismiss as redundant. Full formulas for both
 representations are in `docs/CODE_FACTS.md`.
 
 After rows 34-35 the paper is 7 pages with 5704 characters on the seventh. Every Tier 1 item that does not
 require new experiments is now done; the page-limit decision is the only thing blocking the camera-ready.
 
-## Page budget: 6 pages attempted, 7 pages adopted
+## Page budget on 2026-09-02: cut to 6 pages, then restored to 7
+
+This note records the state on 2026-09-02. Rows 50-51 later returned the paper to 6 pages with everything
+intact, so the counts below are historical.
 
 The camera-ready was first cut back to 6 pages on the understanding that the venue enforces that limit
 strictly. The author then decided 7 pages is acceptable, so everything that had been sacrificed purely for
@@ -183,7 +187,7 @@ is now 7 pages with 7 figures, 6 tables and 27 references: the full float invent
 except that the old Tables V and VII are merged into one, which removed two duplicated rows rather than any
 result.
 
-**If the 6-page limit turns out to be binding after all**, the measured route back is in the git history of
+If the 6-page limit turns out to be binding after all, the measured route back is in the git history of
 this file and in the scripts under the session scratchpad: drop the two per-round figures, fold the
 defense-screening and environment tables into sentences, drop the browser-extension reference, and keep the
 compressed wording. That combination was verified at 6 pages with no overfull boxes.
@@ -204,7 +208,7 @@ as its test.
 Reference hygiene after this pass: 26 entries, all cited, none orphaned, all in order of first
 citation (checked mechanically).
 
-**The paper is back to 6 pages** with the full float inventory intact: 7 figures, 6 tables, 26 references,
+The paper is back to 6 pages with the full float inventory intact: 7 figures, 6 tables, 26 references,
 no overfull boxes, no undefined references, every reference cited and in citation order. This was reached by
 condensing wording and shrinking figures by 10 per cent, so nothing measured and no reviewer item was given up
 to get there.
