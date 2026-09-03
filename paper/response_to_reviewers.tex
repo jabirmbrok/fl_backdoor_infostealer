@@ -14,11 +14,15 @@
 \renewcommand{\arraystretch}{1.25}
 
 % comment column, response column
-\newcolumntype{C}{>{\raggedright\arraybackslash}p{5.4cm}}
-\newcolumntype{R}{>{\raggedright\arraybackslash}p{10.6cm}}
+\newcolumntype{N}{>{\raggedright\arraybackslash}p{0.75cm}}
+\newcolumntype{C}{>{\raggedright\arraybackslash}p{5.0cm}}
+\newcolumntype{R}{>{\raggedright\arraybackslash}p{10.1cm}}
+
+\newcounter{ptno}
+\newcommand{\rownum}{\stepcounter{ptno}\theptno}
 
 % a row that introduces a group
-\newcommand{\grouprow}[1]{\midrule \multicolumn{2}{@{}l@{}}{\textbf{#1}} \\ \midrule}
+\newcommand{\grouprow}[1]{\midrule \multicolumn{3}{@{}l@{}}{\textbf{#1}} \\ \midrule}
 
 \begin{document}
 
@@ -55,12 +59,12 @@ Table VII, multi-seed Multi-Krum results & \textbf{merged into Table VI} \\
 The merge removed only the two \emph{Backdoor, FedAvg} rows that Table VII duplicated from Table V
 exactly. No result was dropped.
 
-\begin{longtable}{@{}CR@{}}
+\begin{longtable}{@{}NCR@{}}
 \toprule
-\textbf{Comment} & \textbf{Response} \\
+\textbf{No.} & \textbf{Comment} & \textbf{Response} \\
 \endfirsthead
 \toprule
-\textbf{Comment} & \textbf{Response} \\
+\textbf{No.} & \textbf{Comment} & \textbf{Response} \\
 \midrule
 \endhead
 \bottomrule
@@ -68,6 +72,7 @@ exactly. No result was dropped.
 
 \grouprow{Reviewer A}
 
+\rownum &
 Originality should be supported by a clear comparison with closely related recent studies.
 &
 Section~II-C now positions the work against backdoor attacks on malware classifiers specifically:
@@ -76,6 +81,7 @@ family-selective triggers (Yang et al., IEEE S\&P 2023). Both attack static feat
 centralized model, whereas we attack a federated model through the channels of a dynamic-behavior
 image. The abstract now also states the novelty in one sentence. \\
 
+\rownum &
 The experimental procedure is not described with sufficient clarity; the stages are not explicitly
 defined.
 &
@@ -87,26 +93,31 @@ gives the defense parameters, including $f = 1$ and $|\mathcal{S}| = 2$ of five 
 the trigger control. Section~III-H states AdamW, ResNet18 from scratch, the final-round model with
 no best-validation selection, and that the per-round curves are test-set curves. \\
 
+\rownum &
 The workflow figure is insufficiently integrated; it should be referenced and its blocks explained.
 &
 Fig.~1 is referenced in the first sentence of Section~III, and the new opening paragraph walks its
 blocks in order. \\
 
+\rownum &
 Figure 2 is mentioned in II.B while it illustrates Dataset Creation, described in III.A.
 &
 Fixed. The reference to Fig.~2 now sits in Section~III-A, next to the pipeline it depicts. Fig.~3
 stays in III-B, where the representations are described. \\
 
+\rownum &
 Some tables are not mentioned anywhere in the paper.
 &
 All thirteen floats are now referenced at least once. Table~I is cited in III-A, Table~II in III-G
 and Fig.~4 in III-D. \\
 
+\rownum &
 The abstract should state the contribution or novelty more explicitly.
 &
 Added: the channels of the representation are treated as the attack surface, and a trigger confined
 to the fusion channel alone matches one spanning all three. \\
 
+\rownum &
 The discussion provides limited interpretation, and several claims lack supporting references.
 &
 Section~IV now gives a measured mechanism for each main result. For the channel ordering, the mean
@@ -115,6 +126,7 @@ intensity inside the trigger region over all 500 images is 241.7 in R, 81.5 in G
 client survives selection in 8\% to 50\% of rounds, and that rate correlates with the final ASR
 ($r = 0.893$, $p = 0.017$, $n = 6$), which we connect to [15] and [22]. \\
 
+\rownum &
 The reference list should represent recent studies related to the method, and the discussion may
 need additional recent references.
 &
@@ -124,6 +136,7 @@ citation whose claim the two remaining citations already support. The list is 25
 count as before, with a more recent composition. We verified mechanically that every entry is cited
 and numbered in order of first citation. \\
 
+\rownum &
 Standard of English: Fair.
 &
 Two proofreading passes. Beyond ordinary corrections we unified the model notation, inconsistent
@@ -132,6 +145,7 @@ statement that images are normalized to $[0, 255]$ when the code normalizes them
 
 \grouprow{Reviewer B}
 
+\rownum &
 The author should conduct significance testing.
 &
 Section~IV reports Fisher exact tests on the pooled triggered samples. Blue/fusion and full RGB
@@ -145,6 +159,7 @@ This changed one of our claims: red and green are indistinguishable from their o
 $p = 1$, so the result is no detectable effect rather than a weaker one. Section~IV-B now says that
 instead of ``remain less effective''. \\
 
+\rownum &
 The author should explain the architecture of SmallCNN.
 &
 Section~III-C describes it: three convolutional blocks of 32, 64 and 128 channels, each Conv
@@ -152,18 +167,22 @@ $3 \times 3$ with batch normalization and ReLU, max-pooling after the first two,
 pooling after the third, and a linear layer to five classes. All backbones are trained from
 scratch. \\
 
+\rownum &
 Tables I and II and Figures 1 and 4 exist but were never mentioned.
 &
 All four are now referenced, as are the remaining floats. \\
 
+\rownum &
 Keywords are too many.
 &
 Reduced from seven to five. \\
 
+\rownum &
 The author should mention and discuss every table and figure.
 &
 Every float is now referenced and discussed in at least one sentence. \\
 
+\rownum &
 Contribution and originality: the contributions are empirical experiments.
 &
 We accept that the contribution is empirical, and have made the claim sharper rather than broader: a
@@ -172,6 +191,7 @@ that channel is derived from the other two and carries no independent informatio
 
 \grouprow{Reviewer C}
 
+\rownum &
 Backbone selection, the channel sweep and the single-seed defense screening all use seed 42, so the
 selection may be biased toward one seed.
 &
@@ -181,6 +201,7 @@ every seed would multiply the training budget for candidates that may not surviv
 share one GPU. Section~IV-E notes that the screening uses seed 42, precisely the seed at which
 blue/fusion with Multi-Krum fails. The captions of Tables III, IV and V all state seed 42. \\
 
+\rownum &
 Only three seeds; a deviation as large as $0.5111 \pm 0.4286$ suggests a bimodal outcome, not partial
 mitigation.
 &
@@ -190,22 +211,26 @@ is at least 0.5, so the mean describes no individual run. The per-seed values ar
 5/15 for blue/fusion and 6/15, 15/15 and 6/15 for full RGB. Section~IV-E and the conclusion now
 describe the outcome as bimodal, and the abstract no longer quotes the average ASR. \\
 
+\rownum &
 The attack tests only one source-target pair, so the generalization claim reaches beyond the
 evidence.
 &
 We have not added a second pair. The conclusion lists this as a limitation, and the abstract
 qualifies the claim as holding ``in this controlled IID setting''. \\
 
+\rownum &
 The FL setting is IID-only although the motivation for FL is inherently non-IID.
 &
 Also not addressed by new experiments, and now stated as a limitation. The split files already carry
 a non-IID client assignment that these experiments do not use, so the experiment is available to
 future work rather than blocked. \\
 
+\rownum &
 No statistical significance testing is reported.
 &
 Added, as described under Reviewer B. \\
 
+\rownum &
 The attacker's capability is underspecified; it is unclear whether model replacement or scaling as in
 [12] is employed.
 &
@@ -213,18 +238,21 @@ Section~III-E states that the capability is pure data poisoning: the malicious c
 submits like any other, with no update scaling and no model replacement, so [12] is background rather
 than the attack implemented here. \\
 
+\rownum &
 Multi-Krum on full RGB drops clean accuracy from 0.8400 to 0.7600, a trade-off underemphasized in the
 discussion and the abstract.
 &
 The drop is now in both. Section~IV-E states it next to the ASR reduction, and the abstract reports
 it as part of the Multi-Krum result. \\
 
+\rownum &
 The conclusion states more confidence than $n = 3$ supports, and ``partially suppresses'' is
 imprecise.
 &
 The phrase is gone. The conclusion says that Multi-Krum reduced ASR bimodally rather than partially,
 leaving the backdoor fully effective at 15/15 on one of the three seeds for each trigger. \\
 
+\rownum &
 The conclusion does not address the alternative explanation that the blue channel's effectiveness may
 stem from its information content, which remains untested.
 &
@@ -238,6 +266,7 @@ distinguishes blue is that it is almost empty, 54.5\% of its pixels exactly zero
 saliency explanation is consistent with the measurements but not established, and name the
 contrast-matched trigger as the experiment that would settle it. \\
 
+\rownum &
 The ``serious threat'' framing should be moderated.
 &
 The abstract and conclusion now say ``a serious threat to federated malware classifiers in this
@@ -245,6 +274,7 @@ controlled IID setting''. \\
 
 \grouprow{Changes no reviewer asked for}
 
+\rownum &
 The seed-42 clean baseline was trained on a different budget.
 &
 The clean FL baseline for seed 42, and the trigger controls evaluated against its checkpoint, come
@@ -254,6 +284,7 @@ with a control rate of 6/15 instead of 4/15, so it is worse than the run we repo
 directions of the bias: the reported run sets a higher bar for the clean-performance claim and a
 lower one for the trigger-control argument. No ASR result is affected. \\
 
+\rownum &
 Table III was not a paired comparison.
 &
 The two representations were generated with different split files, so the rows were measured on
@@ -262,6 +293,7 @@ III-C now says so, and the selection of RGB-stack rests on the design argument t
 made, with macro-F1 selecting only the backbone within that representation. The abstract,
 Section~IV-A and the conclusion were adjusted to match. \\
 
+\rownum &
 Figure 7 was regenerated.
 &
 The submitted version was exported at 8.5 inches wide and then placed in a 3.5 inch column, so its
@@ -271,6 +303,7 @@ reproduces Table~VI exactly. \\
 
 \grouprow{What we did not change}
 
+\rownum &
 More seeds, a second source-target pair, and a non-IID partition.
 &
 These need experiments we did not run for this revision. All three are stated as limitations in the
