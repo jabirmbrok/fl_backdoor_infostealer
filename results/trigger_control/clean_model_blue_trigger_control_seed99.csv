@@ -1,2 +1,0 @@
-experiment,checkpoint_path,trigger_channel,trigger_size_ratio,trigger_location,source_label,target_label,source_test_count,clean_test_accuracy,clean_test_macro_f1,clean_source_target_prediction_rate,triggered_source_target_prediction_rate
-clean_model_blue_trigger_control_seed99,results/fl_clean_rgb_resnet18_iid_seed99/final_model.pt,blue,0.1,bottom_right,0,1,15,0.8,0.8007300361746479,0.13333333333333333,0.13333333333333333

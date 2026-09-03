@@ -16,31 +16,31 @@ backbone\_sel & opacity\_blend-small\_cnn & none & none & 0.5333 & 0.5298 & -- \
 backbone\_sel & rgb\_stack-mobilenet\_v2 & none & none & 0.7200 & 0.7200 & -- \\
 backbone\_sel & rgb\_stack-resnet18 & none & none & 0.7867 & 0.7884 & -- \\
 backbone\_sel & rgb\_stack-small\_cnn & none & none & 0.5200 & 0.5144 & -- \\
-clean\_fl & - & none & none & 0.8080 $\pm$ 0.0307 & 0.8090 $\pm$ 0.0264 & -- \\
+clean\_fl & - & none & none & 0.8267 $\pm$ 0.0134 & 0.8255 $\pm$ 0.0104 & -- \\
 clean\_fl & r50 & none & none & 0.7867 & 0.7869 & -- \\
-trigger\_control & at2fb & red & none & 0.8267 $\pm$ 0.0134 & 0.8255 $\pm$ 0.0104 & 0.1333 $\pm$ 0.1155 \\
-trigger\_control & at2fb & green & none & 0.8267 $\pm$ 0.0134 & 0.8255 $\pm$ 0.0104 & 0.1333 $\pm$ 0.1155 \\
-trigger\_control & at2fb & blue & none & 0.8080 $\pm$ 0.0307 & 0.8090 $\pm$ 0.0264 & 0.1333 $\pm$ 0.0816 \\
-trigger\_control & at2fb & full & none & 0.8080 $\pm$ 0.0307 & 0.8090 $\pm$ 0.0264 & 0.1467 $\pm$ 0.0730 \\
+trigger\_control & at2fb & red & none & 0.8267 & 0.8264 & 0.2667 \\
+trigger\_control & at2fb & green & none & 0.8267 & 0.8264 & 0.2667 \\
+trigger\_control & at2fb & blue & none & 0.8267 $\pm$ 0.0134 & 0.8255 $\pm$ 0.0104 & 0.1333 $\pm$ 0.1155 \\
+trigger\_control & at2fb & full & none & 0.8267 $\pm$ 0.0134 & 0.8255 $\pm$ 0.0104 & 0.1556 $\pm$ 0.1018 \\
 trigger\_control & at2fb-r50 & red & none & 0.7867 & 0.7869 & 0.4000 \\
 trigger\_control & at2fb-r50 & green & none & 0.7867 & 0.7869 & 0.4000 \\
 trigger\_control & at2fb-r50 & blue & none & 0.7867 & 0.7869 & 0.4000 \\
 trigger\_control & at2fb-r50 & full & none & 0.7867 & 0.7869 & 0.4000 \\
-backdoor\_fedavg & at2fb & red & none & 0.8311 $\pm$ 0.0385 & 0.8313 $\pm$ 0.0390 & 0.1778 $\pm$ 0.1388 \\
-backdoor\_fedavg & at2fb & green & none & 0.8311 $\pm$ 0.0277 & 0.8328 $\pm$ 0.0281 & 0.2222 $\pm$ 0.1018 \\
-backdoor\_fedavg & at2fb & blue & none & 0.8347 $\pm$ 0.0396 & 0.8353 $\pm$ 0.0395 & 0.8933 $\pm$ 0.1535 \\
-backdoor\_fedavg & at2fb & full & none & 0.8240 $\pm$ 0.0436 & 0.8240 $\pm$ 0.0443 & 0.9467 $\pm$ 0.1193 \\
+backdoor\_fedavg & at2fb & red & none & 0.8533 & 0.8524 & 0.3333 \\
+backdoor\_fedavg & at2fb & green & none & 0.8400 & 0.8419 & 0.3333 \\
+backdoor\_fedavg & at2fb & blue & none & 0.8311 $\pm$ 0.0539 & 0.8320 $\pm$ 0.0539 & 1.0000 $\pm$ 0.0000 \\
+backdoor\_fedavg & at2fb & full & none & 0.8267 $\pm$ 0.0611 & 0.8262 $\pm$ 0.0621 & 1.0000 $\pm$ 0.0000 \\
 backdoor\_fedavg & at2fb-p10 & red & none & 0.8267 & 0.8261 & 0.3333 \\
 backdoor\_fedavg & at2fb-p30-s12 & red & none & 0.8133 & 0.8103 & 0.3333 \\
 backdoor\_fedavg & at2fb-p30-s12 & full & none & 0.8400 & 0.8403 & 1.0000 \\
-backdoor\_defense & at2fb & blue & clipping & 0.8400 $\pm$ 0.0231 & 0.8412 $\pm$ 0.0224 & 0.9778 $\pm$ 0.0385 \\
-backdoor\_defense & at2fb & blue & median & 0.8089 $\pm$ 0.0204 & 0.8087 $\pm$ 0.0195 & 0.9333 $\pm$ 0.1155 \\
-backdoor\_defense & at2fb & blue & trimmed\_mean & 0.8178 $\pm$ 0.0407 & 0.8168 $\pm$ 0.0380 & 1.0000 $\pm$ 0.0000 \\
-backdoor\_defense & at2fb & blue & multikrum & 0.8107 $\pm$ 0.0146 & 0.8108 $\pm$ 0.0143 & 0.5333 $\pm$ 0.4320 \\
-backdoor\_defense & at2fb & full & clipping & 0.8266 $\pm$ 0.0462 & 0.8272 $\pm$ 0.0449 & 1.0000 $\pm$ 0.0000 \\
-backdoor\_defense & at2fb & full & median & 0.8356 $\pm$ 0.0468 & 0.8346 $\pm$ 0.0479 & 1.0000 $\pm$ 0.0000 \\
-backdoor\_defense & at2fb & full & trimmed\_mean & 0.8267 $\pm$ 0.0353 & 0.8268 $\pm$ 0.0352 & 1.0000 $\pm$ 0.0000 \\
-backdoor\_defense & at2fb & full & multikrum & 0.7973 $\pm$ 0.0289 & 0.7959 $\pm$ 0.0305 & 0.7600 $\pm$ 0.3286 \\
+backdoor\_defense & at2fb & blue & clipping & 0.8533 & 0.8550 & 1.0000 \\
+backdoor\_defense & at2fb & blue & median & 0.8133 & 0.8120 & 1.0000 \\
+backdoor\_defense & at2fb & blue & trimmed\_mean & 0.8267 & 0.8244 & 1.0000 \\
+backdoor\_defense & at2fb & blue & multikrum & 0.8178 $\pm$ 0.0154 & 0.8184 $\pm$ 0.0135 & 0.5111 $\pm$ 0.4286 \\
+backdoor\_defense & at2fb & full & clipping & 0.8533 & 0.8550 & 1.0000 \\
+backdoor\_defense & at2fb & full & median & 0.8400 & 0.8388 & 1.0000 \\
+backdoor\_defense & at2fb & full & trimmed\_mean & 0.8133 & 0.8145 & 1.0000 \\
+backdoor\_defense & at2fb & full & multikrum & 0.7956 $\pm$ 0.0407 & 0.7931 $\pm$ 0.0427 & 0.6000 $\pm$ 0.3464 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -61,74 +61,40 @@ backbone\_sel & none & none & 42 & 0.7200 & 0.7200 & -- \\
 backbone\_sel & none & none & 42 & 0.7867 & 0.7884 & -- \\
 backbone\_sel & none & none & 42 & 0.5200 & 0.5144 & -- \\
 backdoor\_defense & blue & clipping & 42 & 0.8533 & 0.8550 & 15/15 \\
-backdoor\_defense & blue & clipping & 123 & 0.8133 & 0.8153 & 15/15 \\
-backdoor\_defense & blue & clipping & 2026 & 0.8533 & 0.8532 & 14/15 \\
 backdoor\_defense & blue & median & 42 & 0.8133 & 0.8120 & 15/15 \\
-backdoor\_defense & blue & median & 123 & 0.7867 & 0.7878 & 15/15 \\
-backdoor\_defense & blue & median & 2026 & 0.8267 & 0.8263 & 12/15 \\
-backdoor\_defense & blue & multikrum & 7 & 0.8000 & 0.8022 & 15/15 \\
 backdoor\_defense & blue & multikrum & 42 & 0.8267 & 0.8244 & 15/15 \\
-backdoor\_defense & blue & multikrum & 99 & 0.8000 & 0.7964 & 2/15 \\
 backdoor\_defense & blue & multikrum & 123 & 0.8267 & 0.8279 & 3/15 \\
 backdoor\_defense & blue & multikrum & 2026 & 0.8000 & 0.8030 & 5/15 \\
 backdoor\_defense & blue & trimmed\_mean & 42 & 0.8267 & 0.8244 & 15/15 \\
-backdoor\_defense & blue & trimmed\_mean & 123 & 0.7733 & 0.7756 & 15/15 \\
-backdoor\_defense & blue & trimmed\_mean & 2026 & 0.8533 & 0.8505 & 15/15 \\
 backdoor\_defense & full & clipping & 42 & 0.8533 & 0.8550 & 15/15 \\
-backdoor\_defense & full & clipping & 123 & 0.7733 & 0.7754 & 15/15 \\
-backdoor\_defense & full & clipping & 2026 & 0.8533 & 0.8511 & 15/15 \\
 backdoor\_defense & full & median & 42 & 0.8400 & 0.8388 & 15/15 \\
-backdoor\_defense & full & median & 123 & 0.7867 & 0.7847 & 15/15 \\
-backdoor\_defense & full & median & 2026 & 0.8800 & 0.8802 & 15/15 \\
-backdoor\_defense & full & multikrum & 7 & 0.8000 & 0.8026 & 15/15 \\
 backdoor\_defense & full & multikrum & 42 & 0.7600 & 0.7542 & 6/15 \\
-backdoor\_defense & full & multikrum & 99 & 0.8000 & 0.7975 & 15/15 \\
 backdoor\_defense & full & multikrum & 123 & 0.7867 & 0.7864 & 15/15 \\
 backdoor\_defense & full & multikrum & 2026 & 0.8400 & 0.8388 & 6/15 \\
 backdoor\_defense & full & trimmed\_mean & 42 & 0.8133 & 0.8145 & 15/15 \\
-backdoor\_defense & full & trimmed\_mean & 123 & 0.8000 & 0.7994 & 15/15 \\
-backdoor\_defense & full & trimmed\_mean & 2026 & 0.8667 & 0.8665 & 15/15 \\
-backdoor\_fedavg & blue & none & 7 & 0.8267 & 0.8275 & 12/15 \\
 backdoor\_fedavg & blue & none & 42 & 0.8400 & 0.8395 & 15/15 \\
-backdoor\_fedavg & blue & none & 99 & 0.8533 & 0.8531 & 10/15 \\
 backdoor\_fedavg & blue & none & 123 & 0.7733 & 0.7747 & 15/15 \\
 backdoor\_fedavg & blue & none & 2026 & 0.8800 & 0.8818 & 15/15 \\
-backdoor\_fedavg & full & none & 7 & 0.8133 & 0.8140 & 15/15 \\
 backdoor\_fedavg & full & none & 42 & 0.8400 & 0.8401 & 15/15 \\
-backdoor\_fedavg & full & none & 99 & 0.8267 & 0.8276 & 11/15 \\
 backdoor\_fedavg & full & none & 123 & 0.7600 & 0.7583 & 15/15 \\
 backdoor\_fedavg & full & none & 2026 & 0.8800 & 0.8802 & 15/15 \\
 backdoor\_fedavg & green & none & 42 & 0.8400 & 0.8419 & 5/15 \\
-backdoor\_fedavg & green & none & 123 & 0.8000 & 0.8013 & 2/15 \\
-backdoor\_fedavg & green & none & 2026 & 0.8533 & 0.8552 & 3/15 \\
 backdoor\_fedavg & red & none & 42 & 0.8533 & 0.8524 & 5/15 \\
-backdoor\_fedavg & red & none & 123 & 0.7867 & 0.7863 & 1/15 \\
-backdoor\_fedavg & red & none & 2026 & 0.8533 & 0.8553 & 2/15 \\
 backdoor\_fedavg & red & none & 42 & 0.8267 & 0.8261 & 5/15 \\
 backdoor\_fedavg & full & none & 42 & 0.8400 & 0.8403 & 15/15 \\
 backdoor\_fedavg & red & none & 42 & 0.8133 & 0.8103 & 5/15 \\
-clean\_fl & none & none & 7 & 0.7600 & 0.7679 & -- \\
 clean\_fl & none & none & 42 & 0.8267 & 0.8264 & -- \\
-clean\_fl & none & none & 99 & 0.8000 & 0.8007 & -- \\
 clean\_fl & none & none & 123 & 0.8133 & 0.8147 & -- \\
 clean\_fl & none & none & 2026 & 0.8400 & 0.8355 & -- \\
 clean\_fl & none & none & 42 & 0.7867 & 0.7869 & -- \\
-trigger\_control & blue & none & 7 & 0.7600 & 0.7679 & 2/15 \\
 trigger\_control & blue & none & 42 & 0.8267 & 0.8264 & 4/15 \\
-trigger\_control & blue & none & 99 & 0.8000 & 0.8007 & 2/15 \\
 trigger\_control & blue & none & 123 & 0.8133 & 0.8147 & 1/15 \\
 trigger\_control & blue & none & 2026 & 0.8400 & 0.8355 & 1/15 \\
-trigger\_control & full & none & 7 & 0.7600 & 0.7679 & 2/15 \\
 trigger\_control & full & none & 42 & 0.8267 & 0.8264 & 4/15 \\
-trigger\_control & full & none & 99 & 0.8000 & 0.8007 & 2/15 \\
 trigger\_control & full & none & 123 & 0.8133 & 0.8147 & 1/15 \\
 trigger\_control & full & none & 2026 & 0.8400 & 0.8355 & 2/15 \\
 trigger\_control & green & none & 42 & 0.8267 & 0.8264 & 4/15 \\
-trigger\_control & green & none & 123 & 0.8133 & 0.8147 & 1/15 \\
-trigger\_control & green & none & 2026 & 0.8400 & 0.8355 & 1/15 \\
 trigger\_control & red & none & 42 & 0.8267 & 0.8264 & 4/15 \\
-trigger\_control & red & none & 123 & 0.8133 & 0.8147 & 1/15 \\
-trigger\_control & red & none & 2026 & 0.8400 & 0.8355 & 1/15 \\
 trigger\_control & blue & none & 42 & 0.7867 & 0.7869 & 6/15 \\
 trigger\_control & full & none & 42 & 0.7867 & 0.7869 & 6/15 \\
 trigger\_control & green & none & 42 & 0.7867 & 0.7869 & 6/15 \\
