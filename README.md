@@ -1,6 +1,6 @@
 # FL Backdoor Infostealer
 
-A research project focused on **Federated Learning (FL)** for **infostealer malware classification** and the evaluation of **backdoor attacks** in distributed machine learning environments.
+A research project on federated learning (FL) for infostealer malware classification, and on how backdoor attacks affect it in distributed machine learning environments.
 
 This repository contains the implementation, experiments, and supporting resources used to study the robustness and security of federated learning models when applied to malware classification.
 
@@ -151,7 +151,7 @@ The implementation in this repository is intended for controlled academic resear
 
 ## Disclaimer
 
-This repository is intended solely for **academic research, cybersecurity education, and defensive security analysis**.
+This repository is intended solely for academic research, cybersecurity education, and defensive security analysis.
 
 Malware-related datasets, samples, and experimental code should only be used in authorized and isolated research environments. The authors are not responsible for misuse of the materials provided in this repository.
 
