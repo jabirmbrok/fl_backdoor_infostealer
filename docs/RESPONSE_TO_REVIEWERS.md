@@ -1,0 +1,224 @@
+# Response to reviewers
+
+Paper: *Channel-Aware Backdoor Attacks Against Federated Infostealer Malware Classification Using
+Dynamic API-Call and Network Representations* (IWBIS)
+
+We thank all three reviewers. Every comment is answered below, with the section of the revised paper
+that carries the change. Where we did not make a requested change, we say so and give the reason
+rather than leaving it out.
+
+Two of the reviewers asked for things that turned out to change our own reading of the results. The
+significance tests Reviewers B and C requested showed that the red and green triggers are not
+distinguishable from their controls at all, which is a stronger statement than the "less effective"
+we had written. Reviewer C's question about whether the blue channel's effectiveness comes from its
+information content turned out to be answerable from the dataset construction code: the blue channel
+is a deterministic function of the other two and carries no independent information. Both findings
+are now in the paper.
+
+## Table and figure numbering has changed
+
+Reviewers refer to tables by number, so please note the mapping before reading the responses. The
+single-seed defense screening now precedes the multi-seed results, and the old Tables V and VII have
+been merged.
+
+| In the submitted version | In this version |
+|---|---|
+| Table I, dataset summary | Table I, unchanged |
+| Table II, experimental environment | Table II, unchanged (condensed from seven rows to four) |
+| Table III, backbone selection | Table III, unchanged |
+| Table IV, channel-aware backdoor sweep | Table IV, unchanged (caption now states seed 42) |
+| Table V, main multi-seed results | Table VI |
+| Table VI, single-seed defense screening | Table V |
+| Table VII, multi-seed Multi-Krum results | merged into Table VI |
+
+The merge removed two rows that Table VII duplicated from Table V exactly, the two
+`Backdoor, FedAvg` rows. No result was dropped. Figure numbering is unchanged: Figs. 1 to 7 still
+refer to the same figures.
+
+Where a reviewer comment cites a table by its old number, our reply below gives the new number.
+
+## Reviewer A
+
+**Originality should be supported by a clear comparison with closely related recent studies.**
+Section II-C now positions the work against backdoor attacks on malware classifiers specifically:
+explanation-guided feature-space triggers (Severi et al., USENIX Security 2021) and family-selective
+triggers (Yang et al., IEEE S&P 2023). Both attack static features of a centralized model, whereas we
+attack a federated model through the channels of a dynamic-behavior image. The abstract now also
+states the novelty in one sentence: the channels of the representation are treated as the attack
+surface, and a trigger confined to the fusion channel alone matches one spanning all three.
+
+**The experimental procedure is not described with sufficient clarity; the stages are not explicitly
+defined.** Section III opens with a new paragraph that names each block of Fig. 1 in the order the
+subsections take them. The procedure itself is now stated rather than implied. Section III-E gives
+the attack as implemented: the poison rate is 20% of the attacker's 14 AgentTesla training images,
+that is two images per round, resampled every round; the trigger is a white 12x12 square written at
+the bottom-right corner after normalization; the malicious client is client 0 and participates in
+every round. Section III-F gives the defense parameters, including f = 1 and |S| = 2 of five clients
+for Multi-Krum, and defines the trigger control. Section III-H states that ResNet18 is trained from
+scratch with AdamW, that the reported model is the final-round global model with no best-validation
+selection, and that the per-round curves are test-set curves.
+
+**The workflow figure is insufficiently integrated; it should be referenced and its blocks
+explained.** Fig. 1 is now referenced in the first sentence of Section III, and the new opening
+paragraph walks its blocks in order.
+
+**Figure 2 is mentioned in II.B while it illustrates Dataset Creation, described in III.A.** Fixed.
+The reference to Fig. 2 now sits in Section III-A, next to the pipeline it depicts. Fig. 3, which
+shows the processed representations, stays in III-B where the representations are described.
+
+**Some tables are not mentioned anywhere in the paper.** All thirteen floats are now referenced at
+least once in the text. Table I is cited in III-A, Table II in III-G, and Fig. 4 in III-D.
+
+**The abstract should state the contribution or novelty more explicitly.** Added, as described above.
+
+**The discussion describes results but provides limited interpretation, and several claims lack
+supporting references.** Section IV now gives a measured mechanism for each of the two main results.
+For the channel ordering, the mean intensity inside the trigger region across all 500 images is 241.7
+in R, 81.5 in G and 10.2 in B, and 37.7% of red trigger-region pixels are already at or above 254,
+where writing the trigger changes nothing. For Multi-Krum, the malicious client survives selection in
+8% to 50% of rounds across the six runs, and that rate correlates with the final ASR (Pearson
+r = 0.893, p = 0.017, n = 6). The second result is connected to reports that robust aggregation
+remains insufficient against stealthy objectives, citing [15] and [22]. The conclusion positions the
+attack against FL backdoor work on general image tasks and against the color-space backdoor.
+
+**The reference list should represent recent studies related to the method, and the discussion may
+need additional recent references.** We added the two 2021 and 2023 malware-backdoor references named
+above and now use [15] and [22] in the discussion. We also removed two references that were doing no
+work: one cited only for the cross-entropy loss, and one background citation in the opening sentence
+whose claim the two remaining citations already support. The list is 25 entries, the same count as the
+submitted version, with a more recent and more relevant composition. We verified mechanically that
+every entry is cited and that the numbering follows the order of first citation.
+
+**Standard of English: Fair.** The paper has been through two proofreading passes. Beyond ordinary
+corrections, we unified the model notation, which was inconsistent between (1) and (3) to (5), fixed a
+citation used to support a claim it contradicts, and corrected a statement that the images are
+normalized to [0, 255] when the code normalizes them to [-1, 1].
+
+## Reviewer B
+
+**The author should conduct significance testing.** Section IV now reports Fisher exact tests on the
+pooled triggered samples. Blue/fusion and full RGB differ from their trigger controls at
+p = 3.5e-19 and p = 2.6e-18, and blue differs from red and from green at p = 4.0e-08. Multi-Krum
+reduces ASR against FedAvg at p = 1.5e-08 for blue/fusion and p = 9.1e-07 for full RGB. Pooling
+across seeds is legitimate here because the split is re-drawn for every seed, so the pooled samples
+are distinct, and the paper says so where it reports the p-values. We also ran paired tests on clean
+performance across seeds: none is significant, including the Multi-Krum utility drop, and the paper
+reports that with the caveat that these tests are low-powered at n = 3.
+
+This test changed one of our claims. We had written that the red and green triggers "remain less
+effective". They are in fact indistinguishable from their own trigger controls, both at p = 1, so
+the measured result is no detectable effect rather than a weaker one. Section IV-B now says that.
+
+**The author should explain the architecture of SmallCNN.** Section III-C describes it: three
+convolutional blocks of 32, 64 and 128 channels, each Conv 3x3 with batch normalization and ReLU,
+max-pooling after the first two blocks, adaptive average pooling after the third, and a linear layer
+to five classes. All backbones are trained from scratch.
+
+**Tables I and II and Figures 1 and 4 exist but were never mentioned.** All four are now referenced,
+as are the remaining floats.
+
+**Keywords are too many.** Reduced from seven to five.
+
+**The author should mention and discuss every table and figure.** Every float is now referenced and
+discussed in at least one sentence.
+
+**Contribution and originality: the contributions are empirical experiments.** We accept that the
+contribution is empirical. We have made the specific claim sharper rather than broader: the finding
+is that a trigger confined to the fusion channel alone is as effective as one spanning all three
+channels, even though that channel is derived from the other two and carries no independent
+information.
+
+## Reviewer C
+
+**Backbone selection, the channel sweep and the single-seed defense screening all use seed 42, so the
+selection may be biased toward one seed's behavior.** This is a fair criticism and the paper now
+states it rather than leaving it implicit. The screening has been moved into its own subsection
+(IV-C, Table V) ahead of the multi-seed results, with the reason given: screening every defense across
+every seed would multiply the training budget by the number of seeds for candidates that may not be
+worth carrying forward, and all runs share one GPU. Section IV-E then notes that the screening uses
+seed 42, which is precisely the seed at which blue/fusion with Multi-Krum fails, so a defense selected
+on one seed can misstate its behavior on the others. The captions of Tables III, IV and V all now
+state that they use seed 42.
+
+**Only three seeds; a deviation as large as 0.5111 +/- 0.4286 suggests a bimodal outcome, not partial
+mitigation.** You are right, and this was the most useful correction we received. Table VI now
+reports Multi-Krum per seed alongside the mean, with a note on both Multi-Krum rows stating that the
+across-seed ASR range is at least 0.5, so the mean describes no individual run. The per-seed values
+are 15/15, 3/15 and 5/15 for blue/fusion and 6/15, 15/15 and 6/15 for full RGB. Section IV-E and the
+conclusion now describe the outcome as bimodal rather than partial, and the abstract no longer quotes
+the average ASR.
+
+**The attack scenario tests only one source-target pair, so the generalization claim reaches beyond
+the evidence.** We have not added a second pair, and the conclusion now lists this as a limitation
+rather than arguing around it. The abstract qualifies the claim as holding "in this controlled IID
+setting".
+
+**The FL setting is IID-only although the motivation for FL is inherently non-IID.** Also not
+addressed by new experiments, and also now stated as a limitation. We note that the split files
+already carry a non-IID client assignment that these experiments do not use, so the experiment is
+available to future work rather than blocked.
+
+**No statistical significance testing is reported.** Added, as described under Reviewer B.
+
+**The attacker's capability is underspecified; it is unclear whether model-replacement or scaling as
+in [12] is employed.** Section III-E now states that the malicious client's capability is pure data
+poisoning: it trains and submits like any other client, with no update scaling and no model
+replacement, so [12] is background rather than the attack implemented here.
+
+**Multi-Krum on full RGB drops clean accuracy from 0.8400 to 0.7600, a trade-off that is
+underemphasized in the discussion and the abstract.** The drop is now in both. Section IV-E states it
+next to the ASR reduction, and the abstract reports it as part of the Multi-Krum result.
+
+**The conclusion states more confidence than n = 3 supports, and "partially suppresses" is
+imprecise.** The phrase is gone. The conclusion now says that Multi-Krum reduced ASR bimodally rather
+than partially, leaving the backdoor fully effective at 15/15 on one of the three seeds for each
+trigger.
+
+**The conclusion does not address the alternative explanation that the blue channel's effectiveness
+may stem from its information content, which remains untested.** This turned out to be testable
+without new experiments, and the answer is that the alternative can be ruled out. The dataset
+construction code shows that the blue channel is the edge map of the average of the other two,
+B = FindEdges((R+G)/2), which we verified against the shipped dataset by recomputing it with zero
+difference on 400 of 400 images. The blue channel is therefore a deterministic function of red and
+green and carries no independent information, so its effectiveness cannot come from information the
+other channels lack. Section III-B now gives this formula and Section IV-B draws the consequence: what
+distinguishes the blue channel is that it is almost empty, with 54.5% of its pixels exactly zero, so
+the trigger is the only strong response there. We state that this saliency explanation is consistent
+with the measurements but not established, and name the contrast-matched trigger as the experiment
+that would settle it.
+
+**The "serious threat" framing should be moderated.** The abstract and conclusion now say "a serious
+threat to federated malware classifiers in this controlled IID setting".
+
+## Changes no reviewer asked for
+
+Two problems surfaced while we prepared the revision, and we report them rather than leave them in.
+
+**The seed-42 clean baseline was trained on a different budget.** The clean FL baseline for seed 42,
+and the trigger controls evaluated against its checkpoint, come from a run of 30 rounds with one local
+epoch, while every other run uses 50 rounds with two local epochs. Section III-H now states this. We
+re-trained the baseline under the common budget: it gives 0.7867 accuracy and 0.7869 macro-F1 with a
+control rate of 6/15 instead of 4/15, so it is worse than the run we report. We state both directions
+of the resulting bias: the reported run sets a higher bar for the claim that the backdoors preserve
+clean performance, and a lower one for the trigger-control argument. No ASR result is affected,
+because every backdoor and defense run uses the common budget.
+
+**Table III was not a paired comparison.** The two representations were generated with different
+split files, so the RGB-stack and opacity-blend rows were measured on different 75-image test sets and
+cannot support a performance claim across representations. Section III-C now says so, and the
+selection of RGB-stack rests on the design argument the paper already made, that channel separation is
+required for channel-aware analysis, with macro-F1 selecting only the backbone within that
+representation. The abstract, Section IV-A and the conclusion were adjusted to match.
+
+**Figure 7 was regenerated.** The version in the submitted paper was exported at 8.5 inches wide and
+then placed in a 3.5 inch column, so its tick labels printed at about 2.3 pt against 10 pt body text.
+It is now generated at the size it is placed at and its labels print at 6 to 7 pt. The data is
+unchanged: the final-round ASR of all four curves reproduces Table VI exactly.
+
+## What we did not change
+
+Three of Reviewer C's points need experiments we did not run for this revision: more seeds, a second
+source-target pair, and a non-IID partition. All three are now stated as limitations in the
+conclusion, together with the note that the red and green results rest on seed 42 alone, and the three
+matching experiments are named as future work. We would rather mark the boundary of the evidence than
+argue past it.
