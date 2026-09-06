@@ -96,7 +96,8 @@ function labelRow(slide, x, y, w, h, label, text, opts) {
   const o = opts || {};
   const labelW = o.labelW || 3.1;
   card(slide, x, y, w, h, o.fill || MIST);
-  patch(slide, x + 0.3, y + (h - 0.24) / 2, 0.24, o.mark || "AAB7C4");
+  // align the square with the label's first line, not with the row's centre
+  patch(slide, x + 0.3, y + 0.19, 0.24, o.mark || "AAB7C4");
   slide.addText(label, {
     x: x + 0.75, y: y + 0.18, w: labelW, h: h - 0.3, isTextBox: true, margin: 0,
     fontFace: BODY, fontSize: 14.5, bold: true, color: o.labelColor || SLATE, valign: "top",
@@ -272,16 +273,16 @@ const hc = t => ({ text: t, options: { bold: true, align: "center" } });
     [hd("Total"), c("350", { bold: true }), c("75", { bold: true }),
       c("75", { bold: true }), c("500", { bold: true })],
   ], Object.assign({}, tableStyle, {
-    x: M, y: 1.95, w: 6.5, colW: [2.3, 1.05, 1.05, 1.05, 1.05],
+    x: M, y: 1.95, w: 6.5, colW: [2.3, 1.05, 1.05, 1.05, 1.05], rowH: 0.5,
   }));
 
-  bullets(s, 7.6, 1.95, 5.0, 3.0, [
+  bullets(s, 7.6, 2.0, 5.0, 3.4, [
     "Cuckoo Sandbox traces become a 16 x 16 API tile; packet captures become a 28 x 28 network tile.",
     "Only the largest-payload session per sample is kept, to limit sample-level leakage.",
     "Stratified by family and re-drawn for every seed, so the seeds do not share a test set.",
-  ], 13.5);
+  ], 14.5);
 
-  footnote(s, 5.0, "AgentTesla is the attack's source family, so every attack success rate in this talk is a count out of those 15 test images.");
+  footnote(s, 5.8, "AgentTesla is the attack's source family, so every attack success rate in this talk is a count out of those 15 test images.");
   s.addNotes("Dynamic analysis only, no static features. Flag the scale out loud: 15 test images per family is small, and one flipped image is one fifteenth of the rate. The paper does not enumerate the behavior categories behind the API tile, so do not offer them if asked precisely.");
 }
 
@@ -340,12 +341,12 @@ const hc = t => ({ text: t, options: { bold: true, align: "center" } });
     [hd("RGB-stack"), hd("ResNet18"), c("0.7867", { bold: true, color: ACC }),
       c("0.7884", { bold: true, color: ACC })],
   ], Object.assign({}, tableStyle, {
-    x: M, y: 1.95, w: 7.0, colW: [2.2, 1.9, 1.45, 1.45],
+    x: M, y: 1.95, w: 7.0, colW: [2.2, 1.9, 1.45, 1.45], rowH: 0.5,
   }));
 
-  card(s, 8.35, 1.95, 4.25, 2.5, MIST);
+  card(s, 8.35, 1.95, 4.25, 3.5, MIST);
   s.addText("Federated setting", {
-    x: 8.65, y: 2.13, w: 3.65, h: 0.3, isTextBox: true, margin: 0,
+    x: 8.65, y: 2.2, w: 3.65, h: 0.3, isTextBox: true, margin: 0,
     fontFace: BODY, fontSize: 12.5, bold: true, color: SLATE,
   });
   [
@@ -353,7 +354,7 @@ const hc = t => ({ text: t, options: { bold: true, align: "center" } });
     ["70 images", "per client, 14 per family, IID"],
     ["50 x 2", "rounds x local epochs, final-round model"],
   ].forEach(([k, v], i) => {
-    const y = 2.52 + i * 0.6;
+    const y = 2.75 + i * 0.82;
     s.addText(k, {
       x: 8.65, y, w: 1.35, h: 0.3, isTextBox: true, margin: 0,
       fontFace: BODY, fontSize: 13, bold: true, color: ACC, valign: "top",
@@ -364,7 +365,7 @@ const hc = t => ({ text: t, options: { bold: true, align: "center" } });
     });
   });
 
-  footnote(s, 4.85, "The two representations were generated from different split files, so this table is not a paired comparison. RGB-stack is chosen because channel separation is required here; macro-F1 selects only the backbone within it. Seed 42, ResNet18 trained from scratch with AdamW.");
+  footnote(s, 5.8, "The two representations were generated from different split files, so this table is not a paired comparison. RGB-stack is chosen because channel separation is required here; macro-F1 selects only the backbone within it. Seed 42, ResNet18 trained from scratch with AdamW.");
   s.addNotes("Be explicit that RGB-stack is not shown to be the better representation. That claim was removed in the camera-ready because the rows sit on different test sets. All backbones are trained from scratch. SmallCNN is three conv blocks of 32, 64 and 128 channels if anyone asks.");
 }
 
@@ -408,24 +409,24 @@ const hc = t => ({ text: t, options: { bold: true, align: "center" } });
     ["Multi-Krum", "scores updates by distance to the others and averages the |S| = 2 lowest of five, with f = 1", { mark: ACC }],
     ["Three baselines", "L2-norm clipping, coordinate-wise median and trimmed mean, screened alongside it", {}],
     ["Trigger control", "the same trigger applied at test time to a clean model that never saw poisoned data", {}],
-  ].forEach(([l, t, o], i) => labelRow(s, M, 1.95 + i * 1.15, 7.8, 0.95, l, t,
+  ].forEach(([l, t, o], i) => labelRow(s, M, 1.95 + i * 1.28, 7.8, 1.08, l, t,
     Object.assign({ labelW: 1.9 }, o)));
 
-  card(s, 8.85, 1.95, 3.75, 3.35, "FBEDEC");
+  card(s, 8.85, 1.95, 3.75, 3.84, "FBEDEC");
   s.addText("Disclosed deviation", {
-    x: 9.15, y: 2.15, w: 3.15, h: 0.3, isTextBox: true, margin: 0,
+    x: 9.15, y: 2.2, w: 3.15, h: 0.3, isTextBox: true, margin: 0,
     fontFace: BODY, fontSize: 12.5, bold: true, color: RED,
   });
   s.addText("The seed-42 clean baseline and its trigger controls come from a 30-round, one-local-epoch run, not the common 50 x 2 budget.", {
-    x: 9.15, y: 2.55, w: 3.15, h: 1.3, isTextBox: true, margin: 0,
+    x: 9.15, y: 2.62, w: 3.15, h: 1.3, isTextBox: true, margin: 0,
     fontFace: BODY, fontSize: 12.5, color: SLATE, lineSpacing: 17, valign: "top",
   });
   s.addText("No attack success result is affected: every backdoor and defense run uses the common budget.", {
-    x: 9.15, y: 3.95, w: 3.15, h: 1.1, isTextBox: true, margin: 0,
+    x: 9.15, y: 4.15, w: 3.15, h: 1.2, isTextBox: true, margin: 0,
     fontFace: BODY, fontSize: 12.5, bold: true, color: SLATE, lineSpacing: 17, valign: "top",
   });
 
-  footnote(s, 5.6, "Screening every defense on every seed would multiply the budget for candidates that may not survive, and all runs share one GPU, so the screening narrows the field on a single seed first.");
+  footnote(s, 6.05, "Screening every defense on every seed would multiply the budget for candidates that may not survive, and all runs share one GPU, so the screening narrows the field on a single seed first.");
   s.addNotes("Disclose the deviation here and give the retrained numbers later, when the trigger-control result is on screen. Multi-Krum is taken as a standard robust-aggregation baseline, not as a defense we propose.");
 }
 
@@ -485,15 +486,15 @@ const hc = t => ({ text: t, options: { bold: true, align: "center" } });
     [hd("Multi-Krum"), c("15/15"), c("6/15", { bold: true, color: ACC }),
       c("0.7600", { bold: true, color: RED })],
   ], Object.assign({}, tableStyle, {
-    x: M, y: 1.95, w: 8.4, colW: [3.0, 1.8, 1.8, 1.8], rowH: 0.42,
+    x: M, y: 1.95, w: 8.4, colW: [3.0, 1.8, 1.8, 1.8], rowH: 0.56,
   }));
 
   s.addText("Multi-Krum is the only defense that moved the attack at all, so it is the one carried to the multi-seed stage \u2014 even though under blue/fusion it too leaves the backdoor at 15 of 15.", {
-    x: 9.3, y: 1.95, w: 3.3, h: 2.3, isTextBox: true, margin: 0,
-    fontFace: BODY, fontSize: 13, color: SLATE, lineSpacing: 18, valign: "top",
+    x: 9.3, y: 2.0, w: 3.3, h: 2.5, isTextBox: true, margin: 0,
+    fontFace: BODY, fontSize: 13.5, color: SLATE, lineSpacing: 19, valign: "top",
   });
 
-  footnote(s, 4.95, "Single seed, seed 42 \u2014 which turns out to be the seed where blue/fusion defeats Multi-Krum. Counts are out of the 15 AgentTesla test images; the paper prints them as rates, 1.0000 and 0.4000.");
+  footnote(s, 5.75, "Single seed, seed 42 \u2014 which turns out to be the seed where blue/fusion defeats Multi-Krum. Counts are out of the 15 AgentTesla test images; the paper prints them as rates, 1.0000 and 0.4000.");
   s.addNotes("Point out that the single-seed screening is exactly the bias a reviewer flagged, and that the next two slides show why it matters. The clean-accuracy column is seed 42 only.");
 }
 
@@ -593,24 +594,24 @@ const hc = t => ({ text: t, options: { bold: true, align: "center" } });
     ["Full RGB, seed 123", c("22 of 50"), c("44%"), c("15/15", { bold: true, color: RED })],
     ["Full RGB, seed 2026", c("9 of 50"), c("18%"), c("6/15")],
   ], Object.assign({}, tableStyle, {
-    x: M, y: 1.9, w: 8.1, colW: [2.7, 2.0, 1.2, 2.2],
+    x: M, y: 1.9, w: 8.1, colW: [2.7, 2.0, 1.2, 2.2], rowH: 0.5,
   }));
 
-  card(s, 9.1, 1.9, 3.5, 1.3, "E8F1FC");
+  card(s, 9.1, 1.9, 3.5, 1.4, "E8F1FC");
   s.addText("r = 0.893,  p = 0.017", {
-    x: 9.35, y: 2.1, w: 3.0, h: 0.42, isTextBox: true, margin: 0,
+    x: 9.35, y: 2.15, w: 3.0, h: 0.42, isTextBox: true, margin: 0,
     fontFace: HEAD, fontSize: 18, bold: true, color: ACC,
   });
   s.addText("Pearson, across the six runs, n = 6", {
-    x: 9.35, y: 2.54, w: 3.0, h: 0.4, isTextBox: true, margin: 0,
+    x: 9.35, y: 2.6, w: 3.0, h: 0.4, isTextBox: true, margin: 0,
     fontFace: BODY, fontSize: 11.5, color: MUTED, lineSpacing: 15, valign: "top",
   });
-  bullets(s, 9.1, 3.45, 3.5, 2.1, [
+  bullets(s, 9.1, 3.6, 3.5, 2.2, [
     "With f = 1 and |S| = 2 of five clients, the poisoned update is not an outlier in parameter space.",
     "Surviving selection is close to a coin flip, and the attacker only has to win often enough.",
-  ], 12);
+  ], 12.5);
 
-  footnote(s, 5.9, "The rank correlation is weaker and not significant at this size: Spearman rho = 0.794, p = 0.059, n = 6. Retention tracks the outcome; it is not established as the cause.");
+  footnote(s, 6.05, "The rank correlation is weaker and not significant at this size: Spearman rho = 0.794, p = 0.059, n = 6. Retention tracks the outcome; it is not established as the cause.");
   s.addNotes("This is the mechanism behind the bimodality. Be candid about n = 6 and about the Pearson value leaning on the two 15/15 runs, because a hostile question here is free otherwise.");
 }
 
@@ -637,11 +638,11 @@ const hc = t => ({ text: t, options: { bold: true, align: "center" } });
     x: M, y: 1.85, w: 5.8, h: 0.3, isTextBox: true, margin: 0,
     fontFace: BODY, fontSize: 12, bold: true, color: ACC, charSpacing: 1.5,
   });
-  bullets(s, M, 2.25, 5.8, 3.3, [
+  bullets(s, M, 2.3, 5.8, 3.6, [
     "Blue/fusion and full-RGB triggers reach 15 of 15 across three seeds, with clean performance close to the baseline.",
     "In seven of the eight trigger controls the target rate is identical with and without the trigger, so the effect comes from poisoning.",
     "Multi-Krum reduces the attack bimodally rather than partially, leaving it fully effective on one of the three seeds for each trigger.",
-  ], 13.5);
+  ], 14.5);
 
   s.addText("NOT ESTABLISHED", {
     x: 7.1, y: 1.85, w: 5.5, h: 0.3, isTextBox: true, margin: 0,
@@ -653,7 +654,7 @@ const hc = t => ({ text: t, options: { bold: true, align: "center" } });
     ["IID partition only", "although the motivation for federation is non-IID data"],
     ["Emptiness is a hypothesis", "consistent with the measurements, not established"],
   ].forEach(([h, t], i) => {
-    const y = 2.25 + i * 0.83;
+    const y = 2.3 + i * 0.95;
     patch(s, 7.1, y + 0.06, 0.22, RED);
     s.addText(h, {
       x: 7.5, y, w: 5.1, h: 0.3, isTextBox: true, margin: 0,
@@ -665,7 +666,7 @@ const hc = t => ({ text: t, options: { bold: true, align: "center" } });
     });
   });
 
-  footnote(s, 5.95, "A non-IID partition, a second source-target pair and a contrast-matched trigger are the three experiments left to future work. The split files already carry a non-IID client assignment, so that one is available rather than blocked.");
+  footnote(s, 6.15, "A non-IID partition, a second source-target pair and a contrast-matched trigger are the three experiments left to future work. The split files already carry a non-IID client assignment, so that one is available rather than blocked.");
   s.addNotes("Say the limitations out loud rather than waiting to be asked. Every threat claim in this talk is scoped to a controlled IID setting.");
 }
 
