@@ -260,9 +260,47 @@ const hc = t => ({ text: t, options: { bold: true, align: "center" } });
   s.addNotes("Contribution 2 is 'select', not 'RGB-stack wins': the two representations were measured on different split files, so the camera-ready dropped the cross-representation comparison. Never deliver 'serious threat' without the controlled-IID qualifier.");
 }
 
-/* ================================================= 5  methodology 1 of 5 */
+/* ================================================= 5  methodology 1 of 6 */
 {
-  const s = lightSlide("Five families, 100 samples each, 15 in test", 1, "1 of 5");
+  const s = lightSlide("The whole study on one page", 1, "1 of 7");
+  s.addImage({
+    path: path.join(REPO, "paper", "method.png"),
+    x: M, y: 1.9, w: 7.5, h: 4.22, sizing: { type: "contain", w: 7.5, h: 4.22 },
+  });
+  s.addText("The next six slides follow these blocks in order", {
+    x: 8.5, y: 1.95, w: 4.1, h: 0.5, isTextBox: true, margin: 0,
+    fontFace: BODY, fontSize: 13, bold: true, color: SLATE, lineSpacing: 17, valign: "top",
+  });
+  [
+    ["Dataset creation", "five families, stratified split"],
+    ["Representation", "RGB-stack, and what blue is"],
+    ["Model selection", "backbone within RGB-stack"],
+    ["Federated learning", "five clients, one malicious"],
+    ["Attack and control", "channel-aware trigger"],
+    ["Defense", "Multi-Krum and three baselines"],
+  ].forEach(([h, t], i) => {
+    const y = 2.62 + i * 0.6;
+    patch(s, 8.5, y + 0.05, 0.18, i === 3 ? ACC : "AAB7C4");
+    s.addText(h, {
+      x: 8.82, y, w: 3.8, h: 0.28, isTextBox: true, margin: 0,
+      fontFace: BODY, fontSize: 12.5, bold: true, color: SLATE, valign: "top",
+    });
+    s.addText(t, {
+      x: 8.82, y: y + 0.26, w: 3.8, h: 0.3, isTextBox: true, margin: 0,
+      fontFace: BODY, fontSize: 11.5, color: MUTED, valign: "top",
+    });
+  });
+  footnote(s, 6.3, "Everything is dynamic analysis: API-call traces and network artifacts from Cuckoo Sandbox, with no static file features.");
+  s.addNotes("Fifteen seconds on this slide. It is Fig. 1 of the paper, and it tells the audience where they are for the rest of the methodology.");
+}
+
+/* ================================================= 6  methodology 2 of 6 */
+{
+  const s = lightSlide("Five families, 100 samples each, 15 in test", 1, "2 of 7");
+  s.addImage({
+    path: path.join(REPO, "paper", "dataset.png"),
+    x: M, y: 1.72, w: 3.95, h: 4.49, sizing: { type: "contain", w: 3.95, h: 4.49 },
+  });
   s.addTable([
     [hd("Family"), hc("Train"), hc("Val"), hc("Test"), hc("Total")],
     ["AgentTesla", c("70"), c("15"), c("15"), c("100")],
@@ -273,64 +311,57 @@ const hc = t => ({ text: t, options: { bold: true, align: "center" } });
     [hd("Total"), c("350", { bold: true }), c("75", { bold: true }),
       c("75", { bold: true }), c("500", { bold: true })],
   ], Object.assign({}, tableStyle, {
-    x: M, y: 1.95, w: 6.5, colW: [2.3, 1.05, 1.05, 1.05, 1.05], rowH: 0.5,
+    x: 5.05, y: 1.85, w: 7.55, colW: [2.45, 1.25, 1.25, 1.25, 1.35], rowH: 0.5,
   }));
-
-  bullets(s, 7.6, 2.0, 5.0, 3.4, [
-    "Cuckoo Sandbox traces become a 16 x 16 API tile; packet captures become a 28 x 28 network tile.",
-    "Only the largest-payload session per sample is kept, to limit sample-level leakage.",
-    "Stratified by family and re-drawn for every seed, so the seeds do not share a test set.",
-  ], 14.5);
-
-  footnote(s, 5.8, "AgentTesla is the attack's source family, so every attack success rate in this talk is a count out of those 15 test images.");
-  s.addNotes("Dynamic analysis only, no static features. Flag the scale out loud: 15 test images per family is small, and one flipped image is one fifteenth of the rate. The paper does not enumerate the behavior categories behind the API tile, so do not offer them if asked precisely.");
+  s.addText("Only the largest-payload session per sample is kept, to limit sample-level leakage. The split is stratified by family and re-drawn for every seed, so the seeds do not share a test set.", {
+    x: 5.05, y: 5.5, w: 7.55, h: 0.7, isTextBox: true, margin: 0,
+    fontFace: BODY, fontSize: 13, color: SLATE, lineSpacing: 18, valign: "top",
+  });
+  footnote(s, 6.35, "AgentTesla is the attack's source family, so every attack success rate in this talk is a count out of those 15 test images.");
+  s.addNotes("Flag the scale out loud: 15 test images per family is small, and one flipped image is one fifteenth of the rate. The paper does not enumerate the behavior categories behind the API tile, so do not offer them if asked precisely.");
 }
 
-/* ================================================= 6  methodology 2 of 5 */
+/* ================================================= 7  methodology 3 of 6 */
 {
-  const s = lightSlide("Blue is derived from red and green, and is nearly empty", 1, "2 of 5");
+  const s = lightSlide("Blue is derived from red and green, and is nearly empty", 1, "3 of 7");
   [
     ["R", "API-call tile, 16 x 16, upscaled", RED],
     ["G", "network tile, 28 x 28, upscaled", GRN],
     ["B", "edge map of the average of R and G", BLU],
   ].forEach(([ch, txt, col], i) => {
-    const y = 1.95 + i * 0.62;
+    const y = 1.95 + i * 0.6;
     patch(s, M, y + 0.05, 0.3, col);
     s.addText(ch, {
       x: M + 0.42, y, w: 0.45, h: 0.38, isTextBox: true, margin: 0,
       fontFace: HEAD, fontSize: 17, bold: true, color: SLATE,
     });
     s.addText(txt, {
-      x: M + 0.95, y: y + 0.03, w: 5.5, h: 0.38, isTextBox: true, margin: 0,
-      fontFace: BODY, fontSize: 13.5, color: SLATE,
+      x: M + 0.95, y: y + 0.03, w: 4.4, h: 0.38, isTextBox: true, margin: 0,
+      fontFace: BODY, fontSize: 13, color: SLATE,
     });
   });
 
-  card(s, M, 3.95, 6.7, 2.0, "E8F1FC");
+  card(s, M, 3.85, 5.45, 2.35, "E8F1FC");
   s.addText("B = FindEdges( (R + G) / 2 )", {
-    x: M + 0.3, y: 4.12, w: 6.1, h: 0.42, isTextBox: true, margin: 0,
-    fontFace: HEAD, fontSize: 19, bold: true, color: ACC,
+    x: M + 0.28, y: 4.02, w: 4.95, h: 0.42, isTextBox: true, margin: 0,
+    fontFace: HEAD, fontSize: 18, bold: true, color: ACC,
   });
   s.addText("A 3 x 3 edge convolution, so blue is a deterministic function of the other two and adds no independent information. It is also the emptiest channel: 62.8% of its pixels are exactly zero across the 500 images, 54.5% in AgentTesla.", {
-    x: M + 0.3, y: 4.58, w: 6.1, h: 1.25, isTextBox: true, margin: 0,
+    x: M + 0.28, y: 4.48, w: 4.95, h: 1.6, isTextBox: true, margin: 0,
     fontFace: BODY, fontSize: 12.5, color: SLATE, lineSpacing: 17, valign: "top",
   });
 
   s.addImage({
     path: path.join(REPO, "paper", "malware.png"),
-    x: 7.85, y: 1.9, w: 4.75, h: 3.75, sizing: { type: "contain", w: 4.75, h: 3.75 },
+    x: 6.75, y: 1.85, w: 5.85, h: 4.35, sizing: { type: "contain", w: 5.85, h: 4.35 },
   });
-  s.addText("Processed representations, one column per family", {
-    x: 7.85, y: 5.7, w: 4.75, h: 0.3, isTextBox: true, margin: 0,
-    fontFace: BODY, fontSize: 11, color: MUTED,
-  });
-  footnote(s, 6.15, "Opacity blend mixes both sources into every channel; RGB-stack is used because only it separates the sources by channel.");
+  footnote(s, 6.35, "Processed representations, one column per family. Opacity blend mixes both sources into every channel; RGB-stack is used because only it separates the sources by channel.");
   s.addNotes("The determinism was verified against the shipped dataset: FindEdges(mean(R,G)) reproduced with zero difference on 400 of 400 images. This answers a reviewer directly: blue cannot owe its effectiveness to information content, because it has none the other two lack. Zero-pixel share 62.8% dataset-wide, 54.5% on the AgentTesla row of results/tables/channel_stats.csv.");
 }
 
-/* ================================================= 7  methodology 3 of 5 */
+/* ================================================= 8  methodology 4 of 6 */
 {
-  const s = lightSlide("RGB-stack for channel separation, ResNet18 within it", 1, "3 of 5");
+  const s = lightSlide("RGB-stack for channel separation, ResNet18 within it", 1, "4 of 7");
   s.addTable([
     [hd("Representation"), hd("Backbone"), hc("Acc."), hc("Macro-F1")],
     ["Opacity blend", "SmallCNN", c("0.5333"), c("0.5298")],
@@ -345,66 +376,113 @@ const hc = t => ({ text: t, options: { bold: true, align: "center" } });
   }));
 
   card(s, 8.35, 1.95, 4.25, 3.5, MIST);
-  s.addText("Federated setting", {
+  s.addText("SmallCNN, for reference", {
     x: 8.65, y: 2.2, w: 3.65, h: 0.3, isTextBox: true, margin: 0,
     fontFace: BODY, fontSize: 12.5, bold: true, color: SLATE,
   });
   [
-    ["FedAvg", "one server, five clients"],
-    ["70 images", "per client, 14 per family, IID"],
-    ["50 x 2", "rounds x local epochs, final-round model"],
+    ["3 blocks", "32, 64 and 128 channels"],
+    ["Conv 3 x 3", "batch norm, ReLU, max-pool twice"],
+    ["From scratch", "as are MobileNetV2 and ResNet18"],
   ].forEach(([k, v], i) => {
     const y = 2.75 + i * 0.82;
     s.addText(k, {
-      x: 8.65, y, w: 1.35, h: 0.3, isTextBox: true, margin: 0,
+      x: 8.65, y, w: 1.5, h: 0.3, isTextBox: true, margin: 0,
       fontFace: BODY, fontSize: 13, bold: true, color: ACC, valign: "top",
     });
     s.addText(v, {
-      x: 10.05, y, w: 2.3, h: 0.55, isTextBox: true, margin: 0,
+      x: 10.2, y, w: 2.15, h: 0.65, isTextBox: true, margin: 0,
       fontFace: BODY, fontSize: 12, color: SLATE, lineSpacing: 15, valign: "top",
     });
   });
 
   footnote(s, 5.8, "The two representations were generated from different split files, so this table is not a paired comparison. RGB-stack is chosen because channel separation is required here; macro-F1 selects only the backbone within it. Seed 42, ResNet18 trained from scratch with AdamW.");
-  s.addNotes("Be explicit that RGB-stack is not shown to be the better representation. That claim was removed in the camera-ready because the rows sit on different test sets. All backbones are trained from scratch. SmallCNN is three conv blocks of 32, 64 and 128 channels if anyone asks.");
+  s.addNotes("Be explicit that RGB-stack is not shown to be the better representation. That claim was removed in the camera-ready because the rows sit on different test sets.");
+}
+
+/* ================================================= 9  methodology 5 of 6 */
+{
+  const s = lightSlide("Five clients, one of them malicious", 1, "5 of 7");
+  s.addImage({
+    path: path.join(REPO, "paper", "federated.jpg"),
+    x: M, y: 1.85, w: 5.3, h: 4.38, sizing: { type: "contain", w: 5.3, h: 4.38 },
+  });
+  [
+    ["FedAvg", "the server averages client updates by sample count, and never sees raw data"],
+    ["70 images", "on every client, 14 per family, so the partition is balanced and IID"],
+    ["50 x 2", "communication rounds by local epochs; the final-round global model is reported"],
+    ["Client 0", "is malicious in every round, and submits like any other client"],
+  ].forEach(([k, v], i) => {
+    const x = 6.4 + (i % 2) * 3.15;
+    const y = 1.9 + Math.floor(i / 2) * 2.2;
+    card(s, x, y, 2.95, 2.0, i === 3 ? "FBEDEC" : MIST);
+    s.addText(k, {
+      x: x + 0.25, y: y + 0.22, w: 2.5, h: 0.45, isTextBox: true, margin: 0,
+      fontFace: HEAD, fontSize: 20, bold: true, color: i === 3 ? RED : ACC,
+    });
+    s.addText(v, {
+      x: x + 0.25, y: y + 0.72, w: 2.5, h: 1.15, isTextBox: true, margin: 0,
+      fontFace: BODY, fontSize: 12, color: SLATE, lineSpacing: 16, valign: "top",
+    });
+  });
+  footnote(s, 6.35, "The malicious client's capability is pure data poisoning: no update scaling and no model replacement, so it is a weaker attacker than most federated backdoor work assumes.");
+  s.addNotes("Walk the figure: five clients train locally, the server aggregates with FedAvg, and only client 1 in the figure holds poisoned samples. Everything the server can inspect is an update, never the data behind it.");
 }
 
 /* ================================================= 8  methodology 4 of 5 */
 {
-  const s = lightSlide("The attacker is weak by design: two images per round", 1, "4 of 5");
+  const s = lightSlide("The attacker is weak by design: two images per round", 1, "6 of 7");
   [
-    ["1 of 5", "clients is malicious, and takes part in every round"],
     ["2 images", "poisoned per round, resampled each round"],
-    ["12 x 12", "white trigger, bottom-right, written after normalization"],
-    ["0 scaling", "pure data poisoning, no model replacement"],
+    ["12 x 12", "white square, written after normalization"],
+    ["4 triggers", "red/API, green/network, blue/fusion, all three at once"],
+    ["15 targets", "the AgentTesla test images the attack tries to flip"],
   ].forEach(([v, l], i) => {
     const x = M + i * 3.05;
-    card(s, x, 1.95, 2.8, 2.0);
+    card(s, x, 1.9, 2.8, 1.85);
     s.addText(v, {
-      x: x + 0.25, y: 2.15, w: 2.3, h: 0.55, isTextBox: true, margin: 0,
-      fontFace: HEAD, fontSize: 24, bold: true, color: ACC,
+      x: x + 0.25, y: 2.08, w: 2.3, h: 0.55, isTextBox: true, margin: 0,
+      fontFace: HEAD, fontSize: 23, bold: true, color: ACC,
     });
     s.addText(l, {
-      x: x + 0.25, y: 2.75, w: 2.35, h: 1.05, isTextBox: true, margin: 0,
+      x: x + 0.25, y: 2.66, w: 2.35, h: 1.0, isTextBox: true, margin: 0,
       fontFace: BODY, fontSize: 12.5, color: SLATE, lineSpacing: 17, valign: "top",
     });
   });
 
-  s.addText("AgentTesla is relabelled as FormBook. Both are infostealers, so the pair is a plausible same-category target.", {
-    x: M, y: 4.2, w: 11.9, h: 0.35, isTextBox: true, margin: 0,
-    fontFace: BODY, fontSize: 14, color: SLATE,
+  // schematic of where the trigger sits, drawn to scale: 12 of 128 pixels
+  const IMG = 1.85, TRG = IMG * 12 / 128;
+  s.addShape(pres.ShapeType.rect, {
+    x: M, y: 4.15, w: IMG, h: IMG, fill: { color: "B8C4D0" },
+    line: { color: "8FA0B0", width: 1 },
   });
-  s.addText("Four trigger settings: red/API, green/network, blue/fusion, and all three channels at once. Attack success rate is the share of the 15 triggered AgentTesla test images that the model calls FormBook.", {
-    x: M, y: 4.65, w: 11.9, h: 0.75, isTextBox: true, margin: 0,
+  s.addShape(pres.ShapeType.rect, {
+    x: M + IMG - TRG - 0.04, y: 4.15 + IMG - TRG - 0.04, w: TRG, h: TRG,
+    fill: { color: "FFFFFF" }, line: { color: "8FA0B0", width: 0.5 },
+  });
+  s.addText("128 x 128, trigger to scale", {
+    x: M, y: 6.06, w: IMG + 0.4, h: 0.3, isTextBox: true, margin: 0,
+    fontFace: BODY, fontSize: 11, color: MUTED,
+  });
+
+  s.addText("AgentTesla is relabelled as FormBook. Both are infostealers, so the pair is a plausible same-category target.", {
+    x: 3.1, y: 4.2, w: 9.5, h: 0.35, isTextBox: true, margin: 0,
+    fontFace: BODY, fontSize: 14, color: SLATE, valign: "top",
+  });
+  s.addText("Attack success rate is the share of the 15 triggered AgentTesla test images that the model calls FormBook. Because the trigger is confined to one channel at a time, the same attack can be run four ways on the same images.", {
+    x: 3.1, y: 4.65, w: 9.5, h: 0.8, isTextBox: true, margin: 0,
     fontFace: BODY, fontSize: 14, color: SLATE, lineSpacing: 20, valign: "top",
   });
-  footnote(s, 5.6, "The configured poison rate is 20% of the attacker's 14 AgentTesla images; the code truncates, so two images are poisoned each round, an effective 14.3%. That is 2 of the 350 global training images.");
+  s.addText("The configured poison rate is 20% of the attacker's 14 AgentTesla images; the code truncates, so two images are poisoned each round, an effective 14.3%. That is 2 of the 350 global training images.", {
+    x: 3.1, y: 5.55, w: 9.5, h: 0.7, isTextBox: true, margin: 0,
+    fontFace: BODY, fontSize: 12.5, italic: true, color: MUTED, lineSpacing: 17, valign: "top",
+  });
   s.addNotes("The capability is deliberately weak: no update scaling, no model replacement, so model-replacement work is background rather than the attack used here. The trigger is written after normalization.");
 }
 
 /* ================================================= 9  methodology 5 of 5 */
 {
-  const s = lightSlide("Four defenses screened, and one deviation disclosed", 1, "5 of 5");
+  const s = lightSlide("Four defenses screened, and one deviation disclosed", 1, "7 of 7");
   [
     ["Multi-Krum", "scores updates by distance to the others and averages the |S| = 2 lowest of five, with f = 1", { mark: ACC }],
     ["Three baselines", "L2-norm clipping, coordinate-wise median and trimmed mean, screened alongside it", {}],
@@ -504,20 +582,31 @@ const hc = t => ({ text: t, options: { bold: true, align: "center" } });
   [
     ["15/15", "on every seed, for blue/fusion and for full RGB under FedAvg", ACC],
     ["0.8311 \u00b1 0.0539", "clean accuracy under the blue/fusion backdoor, against 0.8267 \u00b1 0.0134 for clean FL", SLATE],
-    ["7 of 8", "trigger controls give exactly the same target rate with and without the trigger", ACC],
+    ["7 of 8", "trigger controls give the same target rate with and without the trigger; per seed 4/15, 1/15, 1/15", ACC],
   ].forEach(([v, l, col], i) => {
-    const x = M + i * 4.05;
-    card(s, x, 1.9, 3.8, 2.25);
-    stat(s, x + 0.28, 2.12, 3.25, v, l, col, 26);
+    const y = 1.85 + i * 1.35;
+    card(s, M, y, 6.0, 1.25);
+    s.addText(v, {
+      x: M + 0.3, y: y + 0.16, w: 2.5, h: 0.5, isTextBox: true, margin: 0,
+      fontFace: HEAD, fontSize: 24, bold: true, color: col,
+    });
+    s.addText(l, {
+      x: M + 0.3, y: y + 0.68, w: 5.4, h: 0.55, isTextBox: true, margin: 0,
+      fontFace: BODY, fontSize: 12.5, color: SLATE, lineSpacing: 16, valign: "top",
+    });
   });
 
-  bullets(s, M, 4.45, 11.9, 1.4, [
-    "The control applies the same trigger, at test time, to a clean model that never saw poisoned data. Its residual rate is the model's own AgentTesla-to-FormBook confusion.",
-    "Per-seed control rates for blue/fusion are 4/15, 1/15 and 1/15, so the 15 of 15 under poisoning cannot be credited to the trigger pattern itself.",
-  ], 13.5);
+  s.addImage({
+    path: path.join(REPO, "paper", "asr_per_round.png"),
+    x: 7.1, y: 1.85, w: 5.5, h: 4.0, sizing: { type: "contain", w: 5.5, h: 4.0 },
+  });
+  s.addText("Attack success over the 50 rounds, seed 42", {
+    x: 7.1, y: 5.9, w: 5.5, h: 0.3, isTextBox: true, margin: 0,
+    fontFace: BODY, fontSize: 11, color: MUTED,
+  });
 
-  footnote(s, 6.1, "Clean accuracy stays comparable on average, but its spread is four times the baseline's and on seed 123 it falls to 0.7733. Re-trained under the common budget, the seed-42 baseline gives 0.7867 accuracy, 0.7869 macro-F1 and a control rate of 6/15 rather than 4/15.");
-  s.addNotes("Do not say the aggregate metrics never flag the attack: nothing here tests a detector, and the per-seed numbers move. The honest statement is that accuracy and macro-F1 alone did not separate poisoned from clean runs here.");
+  footnote(s, 6.25, "Clean accuracy stays comparable on average, but its spread is four times the baseline's and on seed 123 it falls to 0.7733. Re-trained under the common budget, the seed-42 baseline gives 0.7867 accuracy and a control rate of 6/15 rather than 4/15.");
+  s.addNotes("The control applies the same trigger, at test time, to a clean model that never saw poisoned data, so its residual rate is the model's own AgentTesla-to-FormBook confusion rather than an effect of the pattern. Do not say the aggregate metrics never flag the attack: nothing here tests a detector, and the per-seed numbers move.");
 }
 
 /* ===================================================== 13  results 4 of 4 */
