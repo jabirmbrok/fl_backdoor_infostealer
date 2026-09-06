@@ -38,9 +38,10 @@ where `FIND_EDGES` is PIL's 3x3 edge-detection convolution and the mean uses int
 The blue channel is therefore a deterministic function of the other two. It carries no information
 that R and G do not already contain. Verified against the shipped dataset: recomputing
 `FIND_EDGES(mean(R, G))` reproduces the stored blue channel with zero difference on 400 of 400 images.
-Measured on the images themselves, 54.5 per cent of blue pixels are exactly 0 and the channel mean is
-11.9, which is why the trigger-region contrast in `results/tables/channel_stats.md` is 233 for B against
-40 for R.
+Measured on the images themselves, 62.8 per cent of blue pixels are exactly 0 and the channel mean is
+10.2 across all 500 images; on the AgentTesla row alone the same figures are 54.5 per cent and 11.9.
+That emptiness is why the trigger-region contrast in `results/tables/channel_stats.md` is 233 for B
+against 40 for R.
 
 *Consequence for the paper:* calling B "fused information derived from both sources" is misleading. It is
 an edge map of the average. This also settles the alternative explanation Reviewer C raised, that blue's
@@ -138,9 +139,14 @@ instead of "partially suppresses the backdoor".
 
 | | R | G | B |
 |---|---|---|---|
-| mean intensity | 241.7 | 81.5 | 10.2 |
+| mean intensity, whole image | 241.7 | 81.5 | 10.2 |
+| mean intensity, trigger region | 214.6 | 48.3 | 21.6 |
 | contrast of a white trigger | 40.4 | 206.7 | 233.4 |
 | trigger-region pixels already ≥ 254 | 37.7% | 0.3% | 0.0% |
+
+The first two rows are different quantities and are easy to confuse: contrast is 255 minus the
+**trigger-region** mean, not 255 minus the whole-image mean. The measured region is the bottom-right
+10 per cent of the image, about 13 px per side, against the attack's 12 x 12 trigger.
 
 The red channel is nearly saturated: over a third of the trigger region is already white, so the
 red trigger is close to a no-op, which explains its failure without any appeal to semantics. But

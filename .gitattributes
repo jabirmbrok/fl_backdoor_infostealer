@@ -5,5 +5,6 @@
 *.jpeg  binary
 *.gz    binary
 *.docx  binary
+*.pptx  binary
 *.pt    binary
 *.pth   binary

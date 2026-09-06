@@ -226,3 +226,31 @@ that, since even full column width reached only 3.3 pt. `scripts/plot_per_round.
 per-round histories at 3.45 x 2.10 in with 6-7 pt fonts, so it is placed at column width essentially 1:1. The
 plotting code was previously missing from the repository; it is now in it, which also makes the figure
 reproducible. Note that the conda environment must be on PATH for matplotlib to load its DLLs.
+
+## Two channel statistics corrected after the camera-ready build
+
+Building the conference deck turned up two numbers in the paper that were attached to the wrong
+quantity. Both were checked against `results/tables/channel_stats.csv` before being changed, and
+neither alters a result or a conclusion.
+
+Section IV-B said "over all 500 images the mean value inside the trigger region is 241.7 in R, 81.5
+in G and 10.2 in B". Those are the whole-image channel means, the `R_mean`/`G_mean`/`B_mean` columns
+of the ALL row. The trigger-region means are 214.6, 48.3 and 21.6, and the sentence now uses them.
+The slip was internally visible: the same passage quotes green's contrast as 207, and contrast is
+255 minus the trigger-region mean, so the two halves of the sentence disagreed by a factor of three.
+An audience member could have falsified the arithmetic during the talk. The corrected sentence also
+states the consequence directly, that a white trigger moves red by 40 levels against 233 in blue.
+The R > G > B ordering the argument rests on holds under either quantity, so the mechanism claim is
+unchanged.
+
+Section III-B said 54.5 per cent of blue pixels are exactly zero. That is the AgentTesla row; across
+all 500 images it is 62.8 per cent, which is both correct and stronger for the emptiness argument.
+
+Both figures also appeared in the response letter, rows 7 and 24, and are corrected there in
+`paper/response_to_reviewers.tex` and `docs/RESPONSE_TO_REVIEWERS.md`.
+
+The origin was `docs/CODE_FACTS.md`, which recorded the AgentTesla zero-fraction and channel mean as
+if they were dataset-wide and labelled the whole-image means as plain "mean intensity". That table
+now carries both rows, says explicitly that contrast derives from the trigger-region mean and not the
+whole-image mean, and records that the measured region is the bottom-right 10 per cent of the image,
+about 13 px per side, against the attack's 12 x 12 trigger.
