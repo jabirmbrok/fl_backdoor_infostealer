@@ -26,3 +26,6 @@ docs/reviews.md
 !results/runs.csv
 !results/tables/
 !results/**/.gitkeep
+
+# the signed IEEE copyright receipt stays local; this repository is public
+paper/Final Paper/CopyrightReceipt.pdf
