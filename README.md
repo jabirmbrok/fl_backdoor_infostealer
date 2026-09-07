@@ -149,6 +149,16 @@ The experiments may include:
 
 The implementation in this repository is intended for controlled academic research and defensive cybersecurity analysis.
 
+## Paper
+
+The camera-ready of the paper behind this repository is in `paper/ieee_malware_fl_backdoor.pdf` (the IEEE PDF eXpress-certified copy is in `paper/Final Paper/`):
+
+M. A. Aziz, M. J. Mubarok and E. Fitria, "Channel-Aware Backdoor Attacks Against Federated Infostealer Malware Classification Using Dynamic API-Call and Network Representations," accepted for the 2026 8th International Workshop on Big Data and Information Security (IWBIS), IEEE, 2026.
+
+The PDF is the accepted version of the paper. The final published version will be available on IEEE Xplore.
+
+© 2026 IEEE. Personal use of this material is permitted. Permission from IEEE must be obtained for all other uses, in any current or future media, including reprinting/republishing this material for advertising or promotional purposes, creating new collective works, for resale or redistribution to servers or lists, or reuse of any copyrighted component of this work in other works.
+
 ## Disclaimer
 
 This repository is intended solely for academic research, cybersecurity education, and defensive security analysis.
