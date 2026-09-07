@@ -254,3 +254,31 @@ if they were dataset-wide and labelled the whole-image means as plain "mean inte
 now carries both rows, says explicitly that contrast derives from the trigger-region mean and not the
 whole-image mean, and records that the measured region is the bottom-right 10 per cent of the image,
 about 13 px per side, against the attack's 12 x 12 trigger.
+
+## Bottom margin on page 3, for the EDAS upload check
+
+The camera-ready upload was rejected: "The bottom margin is 0.99 in on page 3, which is below
+the required margin of 1 in." Measured from the PDF ink, page 3 ended at 0.9867 in while every
+other page ended at 1.0200 or more.
+
+The cause was the depth of equation (3), the last box in the right column of that page. IEEEtran
+sets `\flushbottom`, so the final box is pinned to the bottom of the text block, and TeX lets a
+box hang below it by up to `\maxdepth`. Equation (3) used that allowance: the descender of the
+index letter `j`, in both `d_{k,j}` and `w_j^{t+1}`, reached about 2.4 pt lower than an ordinary
+line of text.
+
+Things that did not work, each measured rather than assumed: `\enlargethispage`, negative
+`\vspace` before the equation, and a larger `\maxdepth` all left page 3 at exactly 0.9867 in,
+because `\flushbottom` re-absorbs the space. Shortening `\textheight` by as little as 1 pt did
+fix the margin but pushed reference [25] onto a seventh page, as did forcing a column break
+before the equation.
+
+The fix removes the descender instead, so nothing reflows. The dummy index is renamed `j` to
+`m` in equations (3) and (4), and equation (3) uses fixed-size norm bars `\|` rather than
+`\left\| ... \right\|`, which no longer need to grow around `w_k^{t+1}`. Page 3 now ends at
+1.0067 in and the paper is unchanged elsewhere: still 6 pages, no overfull boxes, no undefined
+references. `m` was chosen over `l`, which reads as a 1, and it appears nowhere else in the
+paper as a symbol.
+
+Margins of the rebuilt PDF, minimum over the six pages: top 0.7700 in, bottom 1.0067 in,
+left 0.6733 in, right 0.6733 in.
