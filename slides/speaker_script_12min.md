@@ -4,7 +4,7 @@ Channel-Aware Backdoor Attacks Against Federated Infostealer Malware Classificat
 
 Pace: about 125 words per minute. The time after each slide title is how long to spend on it, and the clock time is where you should be when you leave the slide. The talk ends at 11:45, which leaves 15 seconds of slack inside a 12-minute slot, on top of the few seconds each slide's time already allows for changing slides. Words in *italics* are cues, not text to read.
 
-The same script is in the speaker notes of both decks: `iwbis_channel_aware_backdoor_12min.pptx`, which has four backup slides after the Thank-you slide, and `iwbis_channel_aware_backdoor_12min_nobackup.pptx`, which stops at the Thank-you slide. It is a tightened version of an earlier 15-minute script; what was cut from the spoken text is kept in each slide's Q&A notes.
+The same script is in the speaker notes of both decks: `iwbis_channel_aware_backdoor_12min.pptx`, which has four backup slides after the Thank-you slide, and `iwbis_channel_aware_backdoor.pptx`, which stops at the Thank-you slide. It is a tightened version of an earlier 15-minute script; what was cut from the spoken text is kept in each slide's Q&A notes.
 
 Pronunciation: StealC "steal-see"; Vidar "VEE-dar"; Multi-Krum "multi-KROOM"; AdamW "Adam-double-you"; ResNet18 "res-net eighteen"; RTX 3080 "R-T-X thirty-eighty"; IID "I-I-D".
 
