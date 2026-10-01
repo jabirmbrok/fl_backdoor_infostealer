@@ -3,9 +3,9 @@
 Starts from the deck the presenter edited by hand (iwbis_channel_aware_backdoor_simple.pptx) and
 leaves that file untouched. In the copy it writes:
 
-  * three slides move behind the Thank-you slide as backup: the dataset table (Table I), backbone
-    selection (Table III) and the seed-42 training curves (Figs. 5-6). Table II moves from the
-    setup slide to the dataset backup slide;
+  * the seed-42 training curves (Figs. 5-6) move behind the Thank-you slide as backup;
+  * Table II moves from the setup slide to the dataset slide, which becomes the first of the two
+    experimental-setup slides, after the federated-learning slide;
   * the text on the remaining slides is shortened to a few lines each. Every number is one the
     15-minute deck already showed; nothing is computed here. Citation markers and footnotes stay;
   * each main slide's notes become: suggested time, SCRIPT (from speaker_script_12min.md), then
@@ -38,39 +38,43 @@ CRLF = "\r\n"
 NBSP = " "
 
 # slide numbers of the 15-minute deck, in their new order
-MAIN = [1, 2, 3, 4, 5, 7, 8, 10, 11, 12, 14, 15, 16, 17]
-BACKUP = [6, 9, 13, 18, 19, 20]
+MAIN = [1, 2, 3, 4, 5, 7, 6, 8, 9, 10, 11, 12, 14, 15, 16, 17]
+BACKUP = [13, 18, 19, 20]
 
 # what was cut from the spoken text, by new slide number; appended to that slide's Q&A notes
 QA_ADD = {
+    3: "Cut from the 15-minute script: the four triggers are red, green, blue and full RGB.",
+    4: "Cut from the 15-minute script: we report accuracy and macro-F1 throughout, and attack success "
+       "rate for every attack.",
     5: "Cut from the 15-minute script: keeping only the largest-payload session is there to reduce "
-       "leakage between samples. The dataset table (Table I) is on Backup 1.",
-    7: "Cut from the 15-minute script: training runs in PyTorch on an RTX 3080, and the federated "
-       "learning is a simulation we implemented ourselves in PyTorch. Batch size is 16; the learning rate "
-       "and the weight decay are both ten to the minus four. There is no best-validation selection. The "
-       "seeds are 42, 123 and 2026. Backbone selection (Table III) is on Backup 2: within RGB-stack, on "
-       "seed 42, ResNet18 is the strongest backbone, at about 79 percent on both accuracy and macro-F1.",
-    8: "Cut from the 15-minute script: the difference between red and green and their controls is not "
-       "significant (both p = 1, 5/15 against 4/15, seed 42 only). The exact Fisher p-values are "
-       "3.5 x 10^-19 (blue/fusion) and 2.6 x 10^-18 (full RGB) against their controls, and 4.0 x 10^-8 for "
-       "blue against red and green. Pooling is legitimate because the split is re-drawn per seed.",
-    9: "Cut from the 15-minute script: under Multi-Krum with the full-RGB trigger, clean accuracy drops "
-       "from 84 to 76 percent on this seed.",
-    10: "Cut from the 15-minute script: the shorter run is 30 rounds with one local epoch; re-trained at "
-        "the full budget, the control rate is six out of fifteen instead of four.",
-    11: "Cut from the 15-minute script: the seed-42 training curves (Figs. 5-6) are on Backup 3. The "
+       "leakage between samples.",
+    8: "Cut from the 15-minute script: the federated learning is a simulation we implemented ourselves "
+       "in PyTorch. Batch size is 16; the learning rate and the weight decay are both ten to the minus "
+       "four. There is no best-validation selection. The seeds are 42, 123 and 2026.",
+    9: "Cut from the 15-minute script: the opacity-blend rows are not a head-to-head comparison; we chose "
+       "RGB-stack because we need the channels to be separate.",
+    10: "Cut from the 15-minute script: the difference between red and green and their controls is not "
+        "significant (both p = 1, 5/15 against 4/15, seed 42 only). The exact Fisher p-values are "
+        "3.5 x 10^-19 (blue/fusion) and 2.6 x 10^-18 (full RGB) against their controls, and 4.0 x 10^-8 for "
+        "blue against red and green. Pooling is legitimate because the split is re-drawn per seed.",
+    11: "Cut from the 15-minute script: under Multi-Krum with the full-RGB trigger, clean accuracy drops "
+        "from 84 to 76 percent on this seed.",
+    12: "Cut from the 15-minute script: the eight controls are the six in this table plus red and green on "
+        "seed 42. The shorter run is 30 rounds with one local epoch; re-trained at the full budget, the "
+        "control rate is six out of fifteen instead of four.",
+    13: "Cut from the 15-minute script: the seed-42 training curves (Figs. 5-6) are on Backup 1. The "
         "correlation is over the six Multi-Krum runs (r = 0.893, p = 0.017, n = 6).",
-    13: "Cut from the 15-minute script: the trigger controls show that the effect comes from poisoning; "
+    15: "Cut from the 15-minute script: the trigger controls show that the effect comes from poisoning; "
         "the red and green results are on seed 42 only.",
 }
 
 # stale slide references in the notes the slides already had: (old slide number, old text, new text)
 QA_FIX = [
-    (6, "The text for Table I is on the backup slide.", "The paper's text for Table I is on Backup 4."),
+    (6, "The text for Table I is on the backup slide.", "The paper's text for Tables I and II is on Backup 2."),
     (8, "The text for Table II is on the backup slide. The seed-42 deviation belongs to Table VI; it is "
         "footnoted on slide 12 and given in full on the backup slide.",
-        "Table II (experimental environment) is on Backup 1 and its text on Backup 4. The seed-42 deviation "
-        "belongs to Table VI; it is footnoted on slide 10 and given in full on Backup 4."),
+        "Table II (experimental environment) is on slide 7 and its text on Backup 2. The seed-42 deviation "
+        "belongs to Table VI; it is footnoted on slide 12 and given in full on Backup 2."),
 ]
 
 
@@ -257,6 +261,7 @@ def simplify(old):
     ], size=17, line=23, gap=13)
 
     s = old[8]
+    set_line(find(s, "EXPERIMENTAL SETUP"), "EXPERIMENTAL SETUP  ·  2 / 2")
     cap2, tab2 = find(s, "TABLE II."), tables(s)[0]
     assert tab2.table.cell(1, 0).text == "Dynamic analysis"
     training = tables(s)[1]
@@ -282,8 +287,17 @@ def simplify(old):
         "Trigger control: the same triggers on the clean FL model at test time.",
     ], size=16, line=21.5, gap=8)
 
+    s = old[9]
+    set_line(find(s, "RESULTS"), "RESULTS  ·  1 / 4")
+    box = find(s, "Among the RGB-stack backbones")
+    set_paras(box, [
+        ("Among the RGB-stack backbones, measured on seed 42, ResNet18 is the strongest: 78.67% accuracy and 78.84% macro-F1.", True),
+        "It is used for all later experiments.",
+        "The opacity-blend rows are listed for reference only.",
+    ], size=17, line=23, gap=14)
+
     s = old[10]
-    set_line(find(s, "RESULTS"), "RESULTS  ·  1 / 3")
+    set_line(find(s, "RESULTS"), "RESULTS  ·  2 / 4")
     box = find(s, "Table IV shows")
     place(box, y=2.10, h=4.5)
     set_paras(box, [
@@ -293,7 +307,7 @@ def simplify(old):
     ], size=17, line=23, gap=14)
 
     s = old[11]
-    set_line(find(s, "RESULTS"), "RESULTS  ·  2 / 3")
+    set_line(find(s, "RESULTS"), "RESULTS  ·  3 / 4")
     box = find(s, "Table V gives")
     place(box, y=2.00, h=4.6)
     set_paras(box, [
@@ -303,7 +317,7 @@ def simplify(old):
     ], size=17, line=23, gap=16)
 
     s = old[12]
-    set_line(find(s, "RESULTS"), "RESULTS  ·  3 / 3")
+    set_line(find(s, "RESULTS"), "RESULTS  ·  4 / 4")
     set_paras(find(s, "† Across-seed"), [
         "† Across-seed ASR range ≥ 0.5: the outcome is bimodal, so read the per-seed counts (out of 15 source samples), not the mean.",
         "The seed-42 clean baseline and trigger controls come from a 30-round, one-local-epoch run. No ASR result is affected.",
@@ -349,9 +363,9 @@ def simplify(old):
         "Future work: a non-IID partition, a second source–target pair and a contrast-matched trigger.",
     ], size=14.5, line=19.5, gap=6)
 
-    # backup: Table I, joined by Table II from the setup slide
+    # the dataset slide opens the experimental setup: Table I, joined by Table II from the setup slide
     s = old[6]
-    set_line(find(s, "PROPOSED METHOD"), "BACKUP")
+    set_line(find(s, "PROPOSED METHOD"), "EXPERIMENTAL SETUP  ·  1 / 2")
     set_line(find(s, "Dataset Creation"), "Dataset and Experimental Environment")
     place(find(s, "TABLE I."), x=0.70, w=5.85)
     tab1 = tables(s)[0]
@@ -363,12 +377,11 @@ def simplify(old):
     place(tab2, x=6.75, y=2.10)
     restyle_table(tab2, row_h=0.58, font=15)
 
-    set_line(find(old[9], "RESULTS"), "BACKUP")
     set_line(find(old[13], "RESULTS"), "BACKUP")
 
     # the backup slide that points at the slides its notes belong to
     s = old[18]
-    for label, where in [("Table I", "Backup 1"), ("Table II", "Backup 1"), ("Table VI", "slide 10"), ("Figs. 5–6", "Backup 3")]:
+    for label, where in [("Table I", "slide 7"), ("Table II", "slide 7"), ("Table VI", "slide 12"), ("Figs. 5–6", "Backup 1")]:
         box = [sh for sh in s.shapes if (text_of(sh) or "").split("\n")[0] == label]
         assert len(box) == 1, label
         box[0].text_frame.paragraphs[1].runs[0].text = where
@@ -429,10 +442,6 @@ def main(src, script, dst):
         if n not in secs15:
             continue
         paras = list(secs15[n][2])
-        if n == 6:      # Table II came from the setup slide; so does the sentence about it
-            first = re.sub(r"^\[[^\]]*\]\s*", "", secs15[8][2][0])
-            assert ". The model is trained" in first
-            paras.append(first.split(". The model is trained")[0] + ".")
         text = "BACKUP SLIDE. Not part of the 12-minute talk; show it only if a question needs it." + CRLF + CRLF
         text += "IF ASKED" + CRLF + (CRLF + CRLF).join(paras)
         qa = qa_of(n)
